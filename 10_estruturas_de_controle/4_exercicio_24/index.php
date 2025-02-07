@@ -36,3 +36,12 @@ if(gettype($hobbes) == 'integer'){
 else {
     echo $msgNegative . "<br/>";
 }
+
+#também funciona assim: 
+
+if(is_int($nome)){
+    echo $msg . "<br/>";
+}
+else {
+    echo $msgNegative . "<br/>";
+}
