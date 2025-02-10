@@ -6,7 +6,7 @@ $counter = 0;
 while ($counter < sizeof($itens)){
 
     if(is_string($itens[$counter])){
-        echo $itens[$counter];
+        echo $itens[$counter] . "<br/>";
     }
 
     $counter++;
