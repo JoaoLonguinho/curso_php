@@ -1,5 +1,5 @@
 <?php
-
+#Se não encontrar o arquivo gerar "Warning"
 $c = 5;
 
 ?>
