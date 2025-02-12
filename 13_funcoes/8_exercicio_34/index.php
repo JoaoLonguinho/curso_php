@@ -11,5 +11,3 @@ function checkEvenOdd($number){
 for($a = 0; $a <= 10; $a++){
     checkEvenOdd($a);
 }
-
-
