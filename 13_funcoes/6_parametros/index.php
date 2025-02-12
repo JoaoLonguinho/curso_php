@@ -16,4 +16,4 @@ velocidadeMaxima(300);
 velocidadeMaxima(400);
 velocidadeMaxima(500);
 velocidadeMaxima($uno);
-velocidadeMaxima("Teste");
+velocidadeMaxima("'Teste'");
