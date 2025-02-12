@@ -5,3 +5,5 @@ function soma(){
 }
 soma();
 soma();
+
+echo strtoupper('joão');
