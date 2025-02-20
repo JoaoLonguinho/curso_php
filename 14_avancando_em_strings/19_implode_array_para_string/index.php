@@ -4,4 +4,4 @@ $arr = ["a", "j", "u", "d", "a"];
 
 $str = implode($arr);
 
-print_r($str);
+print_r($arr);
