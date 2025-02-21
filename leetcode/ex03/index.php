@@ -14,5 +14,9 @@ function isPalindrome($x) {
 }
 
 echo isPalindrome(93);
+echo "<br/>";
 echo isPalindrome(101);
+echo "<br/>";
 echo isPalindrome(22);
+echo "<br/>";
+echo isPalindrome(11212);
