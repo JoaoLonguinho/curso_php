@@ -8,3 +8,9 @@ for($i = 0; $i <= 10; $i++){
 
 
 print_r($arr);
+
+$arr2 = [];
+
+$arr2["teste"] = "testando";
+
+print_r($arr2);
