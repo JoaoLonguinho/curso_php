@@ -1,21 +1,47 @@
 <?php
 
-function longestCommonPrefix($strs) {
-    $equalParts = [];
+function longestCommonPrefix($strs){
+
+    $prefix = $strs[0];
     foreach($strs as $item){
-        $itemsArray = explode(" ", $item); #Separa em array
-        for($i = 0; $i < count($itemsArray); $i++){
-            $eachWordInArray = $itemsArray[$i];
-            for($j = 0; $j < strlen($eachWordInArray); $j++){
-                for($k = 0; $k < strlen($eachWordInArray); $k++){
-                    if($eachWordInArray[$j] === $eachWordInArray[$k]){
-                        array_push($equalParts, $eachWordInArray[$j], $eachWordInArray[$k]);
-                    }
-                }
-            }
+        while(strpos($item, $prefix) !== 0){
+            $prefix = substr($prefix, 0, -1);
+            if(empty($prefix)) return "";
         }
     }
-    return $equalParts;
+    return $prefix;
 }
 
-print_r(longestCommonPrefix(["flower","flow","flight"]));
+$arr = ["flower","flow","flight"];
+
+print_r(longestCommonPrefix($arr) . "<br/>");
+
+#Segunda resolução: 
+
+function longestCommonPrefixSecond($strs) {
+    if (empty($strs)) return "";
+
+    $prefix = $strs[0];
+
+    foreach ($strs as $item) {
+        $itemsArray = explode(" ", $item); 
+        
+        foreach ($itemsArray as $eachWordInArray) {
+            $tempPrefix = "";
+            for ($j = 0; $j < min(strlen($eachWordInArray), strlen($prefix)); $j++) {
+                if ($eachWordInArray[$j] === $prefix[$j]) {
+                    $tempPrefix .= $eachWordInArray[$j];
+                } else {
+                    break;
+                }
+            }
+            $prefix = $tempPrefix;
+            if (empty($prefix)) return ""; 
+        }
+    }
+    
+    return $prefix;
+}
+
+$words = ["florida", "flow", "flight"];
+echo longestCommonPrefixSecond($words); 
