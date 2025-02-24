@@ -1,5 +1,7 @@
 <?php
 
+$marca = "lalapis"; #esta variavel será sobreescrita com o extract
+
 $arr = [
     "marca" => "lapises",
     "quantidade" => 12,
