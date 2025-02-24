@@ -7,6 +7,6 @@ $humor = "Travesso";
 
 $arr = compact("nome", "tamanho", "idade", "humor");
 
-foreach($arr as $caracteristica){
-    echo $caracteristica . "<br/>";
+foreach($arr as $caracteristica => $value){
+    echo $caracteristica . ": " . $value . "<br/>";
 }
