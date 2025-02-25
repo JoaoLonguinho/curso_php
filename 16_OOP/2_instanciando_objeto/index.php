@@ -2,6 +2,6 @@
 
 class Pessoa{
 
-}
+};
 
 $joao = new Pessoa;
