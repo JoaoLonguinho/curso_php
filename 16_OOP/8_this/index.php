@@ -19,7 +19,15 @@ class Animal{
         $this->name = $nome;
         echo $this->name;
     }
+    function latir(){
+        return "Au au auuuu";
+    }
+    function latirForte(){
+        return strtoupper($this->latir());
+    }
 };
 
 $kako = new Animal;
 $kako->pickName('Kako');
+echo "<br/>";
+echo $kako->latirForte();
