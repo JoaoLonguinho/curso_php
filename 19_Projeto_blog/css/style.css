@@ -1,6 +1,97 @@
 *{  
-    font-family: "Outfit", sans-serif;;
+    font-family: "Outfit", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    min-height: 100vh;
+    position: relative;
 }
 body{
     background-color: #CCC;
+}
+main{
+    margin-bottom: 250px;
+}
+/* navbar */
+#logo{
+    position: absolute;
+    top: 10px;
+    left: 9.5%;
+}
+#logo img{
+    width: 50px;
+}
+#navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.89);
+    color: white;
+    list-style-type: none;
+}
+#navbar a{
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+    font-size: 14px;
+}
+#navbar a:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 25px 0px;
+}
+#title-container{
+    text-align: center;
+    margin: 60px 24px;
+}
+.main-container{
+    display: flex;
+    min-width: 1366px;
+    width: 60%;
+    margin: auto;
+    gap: 40px;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+}
+#posts-container{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 33%;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+#posts-container a,
+#posts-container p,
+#posts-container div{
+    padding: 10px 24px;
+}
+
+#posts-container a{
+    text-decoration: none;
+    color: black;
+}
+.posts-tags{
+    display: flex;
+    list-style-type: none;
+    gap: 15px;
+}
+.posts-tags li{
+    background-color: rgb(225, 225, 225);
+    padding: 0px 10px;
+    border-radius: 20px;
+    margin-bottom: 24px;
 }
