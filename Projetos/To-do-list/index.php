@@ -9,15 +9,40 @@ $file = "todo-list.json";
     else {
         $arr = [];
     }
-    if(isset($_POST['item']) && !empty(trim($_POST['item']))){
+    if (isset($_POST['item']) && !empty(trim($_POST['item']))) {
         $nameAct = trim($_POST['item']);
-        $arr[] = $nameAct;
+        $arr[] = ["id" => uniqid(), "task" => $nameAct, "completed" => false]; // ID único
+        file_put_contents($file, json_encode($arr, JSON_PRETTY_PRINT));
+    }    
+
+    if (isset($_POST['remove'])) {
+        $removeItem = $_POST['remove'];
+        $arr = array_values(array_filter($arr, function($item) use ($removeItem) {
+            return $item !== $removeItem;
+        }));
+    
         file_put_contents($file, json_encode($arr, JSON_PRETTY_PRINT));
     }
 
-    function removeItem(){
-        $itemInARow = json_decode(file_get_contents($file), true);
+    if (isset($_POST['toggle'])) {
+        $taskId = $_POST['toggle'];
+    
+        foreach ($arr as &$task) {
+            if ($task['id'] === $taskId) {
+                $task['completed'] = !$task['completed']; // Alterna entre true e false
+            }
+        }
+    
+        file_put_contents($file, json_encode($arr, JSON_PRETTY_PRINT));
     }
+     
+
+    if (isset($_POST['clear'])) {
+        file_put_contents($file, json_encode([])); 
+        $arr = []; 
+    }
+
+    
 
 ?>
 
@@ -48,18 +73,46 @@ $file = "todo-list.json";
                 <ul>
                     
                         <?php
-                        foreach($arr as $item):
-                        ?>
-                            <li class="list-item">
-                                <p><?= htmlspecialchars($item)?></p> <div class="iconsset"><i class="fa fa-check" style="color:green"></i> <i class="fa fa-times" style="color:red"></i></div>
-                            </li>
-                        <?php
-                        endforeach;
-                        ?>
+                        foreach ($arr as $task):
+                            ?>
+                                <li class="list-item <?= $task['completed'] ? 'completed' : '' ?>">
+                                    <p><?= htmlspecialchars($task['task']) ?></p>
+                                    <div class="iconsset">
+                                        <form action="" method="POST" style="display:inline;">
+                                            <input type="hidden" name="toggle" value="<?= htmlspecialchars($task['id']) ?>"> <!-- Enviando ID -->
+                                            <button type="submit" style="border:none; background:none;">
+                                                <i class="fa fa-check" style="color:<?= $task['completed'] ? 'gray' : 'green' ?>; font-size: 30px"></i>
+                                            </button>
+                                        </form>
+                            
+                                        <form action="" method="POST" style="display:inline;">
+                                            <input type="hidden" name="remove" value="<?= htmlspecialchars($task['id']) ?>"> <!-- Enviando ID -->
+                                            <button type="submit" style="border:none; background:none;">
+                                                <i class="fa fa-times" style="color:red; font-size: 30px"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
+                            <?php
+                            endforeach;
+                            ?>
                 </ul>
+            </div>
+            <div class="btn-container">
+                <form action="index.php" method="POST">
+                    <input type="hidden" name="clear" value="1">
+                    <input type="submit" value="Limpar itens" class="clear">
+                </form>
             </div>
 
         </section>
     </section>
+    <script>
+        function toggleCompleted(element) {
+            let listItem = element.closest(".list-item"); 
+            listItem.classList.toggle("completed"); 
+        }
+    </script>
+
 </body>
 </html>

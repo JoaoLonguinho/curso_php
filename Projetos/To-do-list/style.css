@@ -35,10 +35,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #046865;
 }
 section{
     margin: auto;
-    background-color: rgb(223, 208, 223);
+    background-color: #21A0A0;
     height: 80%;
     width: 80%;
     max-width: 500px;
@@ -51,6 +52,8 @@ section{
 }
 section h1{
     text-align: center;
+    color: white;
+    font-size: 30px;
 }
 .first form{
     display: flex;
@@ -66,11 +69,13 @@ section h1{
 }
 .plus-btn{
     background-color: transparent;
-    color: green;
-    border: 2px solid green;
-    padding: 5px;
-    font-size: 20px;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 20px;
+    font-size: 30px;
     box-sizing: border-box;
+    border-radius: 5px;
+    background-color: green;
 }
 .plus-btn:hover{
     cursor: pointer;
@@ -78,20 +83,45 @@ section h1{
 form input[type='text']{
     background-color: transparent;
     border: 0px;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid #FCFFF7;
     padding: 5px;
     font-size: 20px;
     width: 100%;
+    color: white
+}
+::placeholder{
+    color: #FCFFF7;
 }
 .list-item{
     margin: 20px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgb(101, 101, 101);
+    border-bottom: 2px solid #FCFFF7;
     padding-bottom: 5px;
+    font-style: normal;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
 }
-i:hover{
+.iconsset{
+    display: flex;
+    gap: 15px;
+}
+.completed p{
+    text-decoration: line-through;
+    color: grey;
+}
+.clear{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: red;
+    font-weight: 600;
+    font-size: 20px;
+    border: 0;
+    border-radius: 10px;
+}
+.clear:hover{
     cursor: pointer;
-    transform: scale(1.1);
 }
