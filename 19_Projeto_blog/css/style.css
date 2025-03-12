@@ -58,7 +58,6 @@ footer{
 }
 .main-container{
     display: flex;
-    min-width: 1366px;
     width: 60%;
     margin: auto;
     gap: 40px;
@@ -94,4 +93,15 @@ footer{
     padding: 0px 10px;
     border-radius: 20px;
     margin-bottom: 24px;
+}
+
+@media screen and (max-width: 600px) {
+    #posts-container{
+        width: 100%;
+    }
+    
+    .posts-tags{
+        flex-wrap: wrap;
+        gap: 0;
+    }
 }
