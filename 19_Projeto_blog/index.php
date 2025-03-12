@@ -11,7 +11,7 @@
             <?php foreach($posts as $artigos): ?>
                 <div id="posts-container">
                     <img src="<?=$BASE_URL?>/img/<?=$artigos['img']?>" alt="" class="post-img">
-                    <a href="<?=$BASE_URL?>post.php?id=<?=$artigos['id']?>">
+                    <a href="<?=$BASE_URL?>/post.php?id=<?=$artigos['id']?>">
                         <h2 class="post-tittle"><?= $artigos['title'] ?></h2>
                     </a>
                     <p class="posts-descriptions"><?= $artigos["description"] ?></p>

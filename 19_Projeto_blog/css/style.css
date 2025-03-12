@@ -10,9 +10,10 @@ html{
 }
 body{
     background-color: #CCC;
+    overflow-y: auto;
 }
 main{
-    margin-bottom: 250px;
+    margin-bottom: 500px;
 }
 /* navbar */
 #logo{
@@ -50,7 +51,7 @@ footer{
     text-align: center;
     background-color: black;
     color: white;
-    padding: 25px 0px;
+    padding: 14px 0px;
 }
 #title-container{
     text-align: center;
@@ -62,16 +63,19 @@ footer{
     margin: auto;
     gap: 40px;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     box-sizing: border-box;
 }
 #posts-container{
     display: flex;
     flex-flow: column nowrap;
-    width: 33%;
+    width: 30%;
     background-color: white;
     border-radius: 15px;
     overflow: hidden;
+}
+#posts-container:first-child{
+    width: 100%;
 }
 #posts-container a,
 #posts-container p,
@@ -87,21 +91,66 @@ footer{
     display: flex;
     list-style-type: none;
     gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
 }
 .posts-tags li{
     background-color: rgb(225, 225, 225);
-    padding: 0px 10px;
+    padding: 0px 15px;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.post-page-container{
+    width: 60%;
+    margin: 60px auto;
+    display: flex;
+}
+.post-title{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 60px;
+}
+.img-post{
     margin-bottom: 24px;
 }
-
+.img-post, .img-post img{
+    width: 100%;
+    border-radius: 15px;
+}
+.post-container{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.categories-container{
+    width: 30%;
+    margin-left: 20px;
+}
+.categories-list{
+    list-style-type: none;
+}
 @media screen and (max-width: 600px) {
     #posts-container{
         width: 100%;
     }
-    
     .posts-tags{
-        flex-wrap: wrap;
-        gap: 0;
+        
+        gap: 10px;
+    }
+    .post-container{
+        width: 100%;
+    }
+    .post-page-container{
+        flex-direction: column-reverse;
+    }
+    .categories-container{
+        width: 30%;
+        margin: 0px 0px 24px 0px;
+    }
+    .post-title{
+        width: 300px;
+        margin: 60px auto 0px auto;
     }
 }
