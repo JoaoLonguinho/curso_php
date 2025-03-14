@@ -1,6 +1,6 @@
 <?php
 
-    if(isset($_GET['generate'])){
+    if(isset($_POST['generate'])){
         $alphabet = range('A', 'Z'); #Array alfabeto
         $alphabet_lower = range('a', 'z'); #Colocando tudo em minúsculo
         $numbers = range(0, 9); #Array números
@@ -30,7 +30,7 @@
 <body>
     <main>
         <h1>Gerador de senhas</h1>
-        <form action="index.php" method="GET">
+        <form action="index.php" method="POST">
             <input type="text" name="passGenerated" placeholder="Sua senha será gerada aqui." value=<?php echo htmlspecialchars($newPassString)?> >
             <input type="submit" name="generate" value="Gerar nova senha"> <!-- Botão de gerar nova senha -->
         </form>
