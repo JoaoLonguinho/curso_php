@@ -21,7 +21,13 @@ main h1{
     text-align: center;
     color: white;
 }
-main form{
+main div:first-child{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+main div:nth-child(2){
     display: flex;
     justify-content: center;
     gap: 20px;
