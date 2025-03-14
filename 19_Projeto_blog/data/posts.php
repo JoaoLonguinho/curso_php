@@ -3,9 +3,9 @@
   $posts = [
     [
       'id' => 1,
-      'title' => 'Programando em PHP',
-      'description' => 'Neste post você vai aprender tudo que precisa para ser um bom programador de PHP!',
-      'tags' => ['programação', 'PHP', 'lógica de programação'],
+      'title' => 'Roadmap',
+      'description' => 'Encontre o caminho para se desenvolver na área de programação',
+      'tags' => ['programação', 'roadmap', 'back-end', 'front-end'],
       'img' => 'prog-1.jpg'
     ],
     [
@@ -28,5 +28,19 @@
       'description' => 'Neste post você vai aprender tudo que precisa para ser um bom programador de PHP!',
       'tags' => ['programação', 'PHP', 'lógica de programação'],
       'img' => 'prog-4.jpg'
+    ],
+    [
+      'id' => 5,
+      'title' => 'Matrix',
+      'description' => 'A Matrix dos códigos',
+      'tags' => ['Matrix', 'Código', 'Programação'],
+      'img' => 'prog-5.png'
+    ],
+    [
+      'id' => 6,
+      'title' => 'Programando em PHP',
+      'description' => 'Neste post você vai aprender tudo que precisa para ser um bom programador de PHP!',
+      'tags' => ['programação', 'PHP', 'lógica de programação'],
+      'img' => 'prog-6.jpg'
     ],
   ];
