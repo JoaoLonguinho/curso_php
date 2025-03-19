@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body{
     position: relative;
     height: 100vh;
@@ -34,6 +38,10 @@ body{
 }
 .edit-icon{
     color: #007bff;
+}
+
+.delete-form{
+    display: inline-block;
 }
 .delete-icon{
     color: #bd2130;
@@ -104,4 +112,10 @@ footer p{
 #edit-form{
     max-width: 500px;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+    #home-link{
+        display: none;
+    }
 }

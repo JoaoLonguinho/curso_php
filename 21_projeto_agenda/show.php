@@ -9,6 +9,3 @@
         <p><strong>Observações:</strong></p>
         <p><?= $contact["observation"] ?></p>
     </div>
-<?php
-    include_once("templates/footer.php");
-?>
