@@ -1,3 +1,8 @@
+body{
+    position: relative;
+    height: 100vh;
+}
+
 .navbar-brand img{
     width: 50px;
 }
@@ -63,7 +68,8 @@
     margin: 0 auto;
 }
 #back-link-container{
-    margin: 30px 0px;
+    margin: 30px auto;
+    max-width: 500px;
 }
 #back-link{
     background-color: #007bff;
@@ -76,4 +82,26 @@
 #back-link:hover{
     transform: scale(1.1);
     cursor: pointer;
+}
+
+
+
+footer{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+footer p{
+    margin: 0;
+}
+
+/* Create */
+
+#create-form,
+#edit-form{
+    max-width: 500px;
+    margin: 0 auto;
 }
