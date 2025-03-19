@@ -55,3 +55,25 @@
     margin: 0 auto;
     margin-top: 30px;
 }
+
+/* show / contato individual */
+
+#view-contact-container{
+    max-width: 500px;
+    margin: 0 auto;
+}
+#back-link-container{
+    margin: 30px 0px;
+}
+#back-link{
+    background-color: #007bff;
+    color: white;
+    transition: .2s;
+    text-decoration: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+#back-link:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
