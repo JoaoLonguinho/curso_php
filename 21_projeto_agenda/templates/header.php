@@ -1,6 +1,5 @@
 <?php
     include_once("config/url.php");
-    include_once("config/connection.php");
     include_once("config/process.php");
 
     //Limpa mensagem
