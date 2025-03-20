@@ -1,0 +1,165 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Outfit;
+}
+body{
+    background-color: rgba(20, 20, 20, 0.728);
+}
+main{
+    max-width: 1440px;
+    margin: auto;
+}
+main h1, .selected-movie{
+    text-align: center;
+    margin: 24px 0px;
+    color: white;
+    font-size: 30px;
+}
+.catalog{
+    display: flex;
+    gap: 20px;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.movie-catalog-container{
+    display: flex;
+    width: 30%;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background-color: black;
+    box-shadow: 0px 0px 10px 0px black;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    /* From https://css.glass */
+    color: white;
+    gap: 20px;
+}
+.movie-name{
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.movie-category, .movie-age{
+    font-weight: 500;
+}
+.movie-description{
+    font-weight: 300;
+}
+/* Página de compras */
+.selected-movie{
+    max-width: 1440px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.btn-buy{
+    background-color: rgb(187, 30, 30);
+    color: white;
+    font-weight: 800;
+    border-radius: 10px;
+    padding: 10px 40px;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0px 0px 10px 0px black;
+    transition: .5s;
+}
+.btn-buy:hover{
+    cursor: pointer;
+    background-color: rgb(163, 0, 0);
+    letter-spacing: 5px;
+}
+.buy-container{
+    display: flex;
+    gap: 20px;
+    border: 2px solid white;
+    box-shadow: 0px 0px 10px 0px black;
+}
+.movie-img-container{
+    /* border: 2px solid white; */
+    width: 50%;
+}
+.movie-img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0px 0px 10px 0px black;
+}
+.info-popcorn-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    /* border: 1px solid white; */
+    gap: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+.movie-description-buy,
+.popcorn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40%;
+    border: 1px solid white;
+    box-shadow: 0px 0px 10px 0px black;
+    
+    padding: 24px;
+    gap: 20px;
+}
+.follow-buy button{
+    background-color: rgb(187, 30, 30);
+    color: white;
+    font-weight: 800;
+    
+    width: 100%;
+    padding: 10px 40px;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0px 0px 10px 0px black;
+    transition: .5s;
+}
+.follow-buy button:hover{
+    cursor: pointer;
+    background-color: rgb(163, 0, 0);
+    letter-spacing: 5px;
+}
+.popcorn-container{
+    display: flex;
+    justify-content: space-between;
+}
+.popcorn-option{
+    display: flex;
+    border: 2px solid white;
+    width: 30%;
+    
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 0px black;
+}
+.popcorn-pic{
+    width: 50%;
+}
+.popcorn-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.pop-btn{
+    width: 100%;
+    background-color: rgb(187, 30, 30);
+    color: white;
+    font-weight: 800;
+    border: none;
+}
+
+.alert-msg{
+    background-color: rgb(200, 220, 200);
+    border: 1px solid rgb(1, 80, 1);
+    color: rgb(1, 80, 1);
+    padding: 10px 40px;
+}
