@@ -19,7 +19,7 @@
 
     <div class="buy-container">
         <div class="movie-img-container">
-            <img src="<?= $BASE_URL?>img/placeholder.png" alt="<?=$result["name"]?>">
+            <img src="<?= $BASE_URL?>img/filme-<?=$result["id"]?>.jpg" alt="<?=$result["name"]?>">
         </div>
         <div class="info-popcorn-container">
             <div class="movie-description-buy">

@@ -15,8 +15,12 @@
                     </div>
                     <div>
                         <form class="btn-buy-form" action="comprar.php?id=<?=$movie["id"]?>" method="POST">
-                            <input type="hidden" name="id" value="id">
-                            <button type="submit" class="btn-buy">Comprar ingresso</button>
+                            <input type="hidden" name="id" value="<?=$movie["id"]?>">
+                            <input type="hidden" name="name" value="<?=$movie["name"]?>">
+                            <input type="hidden" name="category" value="<?=$movie["category"]?>">
+                            <input type="hidden" name="classificacao_indicativa" value="<?=$movie["classificacao_indicativa"]?>">
+                            <input type="hidden" name="sinopse" value="<?=$movie["sinopse"]?>">
+                            <button type="submit" class="btn-buy">Selecionar filme</button>
                         </form>
                     </div>
                 </div>

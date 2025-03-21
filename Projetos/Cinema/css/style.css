@@ -163,3 +163,8 @@ main h1, .selected-movie{
     color: rgb(1, 80, 1);
     padding: 10px 40px;
 }
+.cart{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
