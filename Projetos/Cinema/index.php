@@ -1,7 +1,8 @@
 <?php
     include_once("templates/header.php");
 ?>
-<main> 
+<main>
+
     <section class="movies">
         <h1>Onde a aventura vai do começo ao fim em poucas horas</h1>
         <div class="catalog">

@@ -167,4 +167,9 @@ main h1, .selected-movie{
     position: absolute;
     bottom: 30px;
     right: 30px;
+    background-color: black;
+    color: white;
+    padding: 24px;
+    box-sizing: border-box;
+    
 }

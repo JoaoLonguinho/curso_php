@@ -1,16 +1,26 @@
 <?php
     include_once("templates/header.php");
     $_SESSION["movie"] = $result["name"];
+    $_SESSION["category"] = $result["category"];
+    $_SESSION["classificacao_indicativa"] = $result["classificacao_indicativa"];
+    $_SESSION["sinopse"] = $result["sinopse"];
+
     if(isset($_GET["popcornS"])){
          $_SESSION["popcorn"] = $_GET["popcornS"];
     }
     else{
-        $_SESSION["popcorn"] = "Não quero pipoca";
+        $_SESSION["popcorn"] = "";
     }
     
 ?>
 
-
+<section class="cart">
+    <ul>Carrinho:</ul>
+        <li>Filme: <?= $_SESSION["movie"]?></li>
+        <?php if(isset($_GET["popcornS"])): ?>
+        <li>Pipoca: <?= $_SESSION["popcorn"]?></li>
+        <?php endif; ?>
+</section>
 <section class="selected-movie">
     <?php if(isset($_GET["popcornS"]) && $_GET["popcornS"] != ""):?>
         <div><h4 class="alert-msg">Pipoca "<?= $_SESSION["popcorn"] ?>" adicionada ao carrinho</h4></div>
