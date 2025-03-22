@@ -21,7 +21,7 @@ main h1, .selected-movie{
     gap: 20px;
     flex-flow: row wrap;
     box-sizing: border-box;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .movie-catalog-container{
     display: flex;
@@ -101,7 +101,8 @@ main h1, .selected-movie{
     font-size: 18px;
 }
 .movie-description-buy,
-.popcorn{
+.popcorn,
+.chairs{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,9 +138,26 @@ main h1, .selected-movie{
     display: flex;
     border: 2px solid white;
     width: 30%;
-    
     overflow: hidden;
     box-shadow: 0px 0px 10px 0px black;
+}
+.popcorn-option form{
+    width: 100%;
+}
+.popcorn-option form button{
+    height: 22%;
+}
+.popcorn-option div:last-child{
+    width: 100%;
+}
+.popcorn-option form:last-child{
+    height: 100%;
+}
+.popcorn-option:last-child button{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .popcorn-pic{
     width: 50%;
@@ -171,5 +189,30 @@ main h1, .selected-movie{
     color: white;
     padding: 24px;
     box-sizing: border-box;
-    
+
+}
+.chairs-container {
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de largura igual */
+    gap: 10px;
+}
+.chairs-container label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ticket{
+    color: black;
+    border: 10px dashed red;
+    background-color: white;
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+.main-title{
+    text-align: center;
+    color: white;
+    margin: 30px;
 }

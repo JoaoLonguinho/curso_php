@@ -9,7 +9,7 @@
          $_SESSION["popcorn"] = $_GET["popcornS"];
     }
     else{
-        $_SESSION["popcorn"] = "";
+        $_SESSION["popcorn"] = "Não quero pipoca";
     }
     
 ?>
@@ -22,7 +22,7 @@
         <?php endif; ?>
 </section>
 <section class="selected-movie">
-    <?php if(isset($_GET["popcornS"]) && $_GET["popcornS"] != ""):?>
+    <?php if(isset($_GET["popcornS"]) && $_GET["popcornS"] != "Não quero pipoca"):?>
         <div><h4 class="alert-msg">Pipoca "<?= $_SESSION["popcorn"] ?>" adicionada ao carrinho</h4></div>
     <?php endif ?>
     <h1 class=""><?=$result["name"]?></h1>
@@ -82,13 +82,22 @@
                             </form>
                         </div>
                     </div>
+                    <div class="popcorn-option">
+                        <div>
+                            <form action="<?= $BASE_URL ?>comprar.php" method="GET">
+                                <input type="hidden" name="id" value="<?=$result["id"]?>">
+                                <input type="hidden" name="popcornS" value="Não quero pipoca">
+                                <button type="submit" class="pop-btn">Não quero pipoca</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="follow-buy">
                 <form action="chairs.php?id=<?=$result["id"]?>?<?=$_SESSION["popcorn"]?>" method="GET">
                     <input type="hidden" name="id" value="<?=$result["id"]?>">
                     <input type="hidden" name="popcornS" value="<?=$_SESSION["popcorn"]?>">
-                    <button type="submit">Comprar</button>
+                    <button type="submit">Selecionar lugar</button>
                 </form>
             </div>
         </div>

@@ -1,7 +1,16 @@
 <?php
 
 session_start();
+
 include_once("connection.php");
+
+$chairQuery = "SELECT * FROM chairs";
+
+$chairStmt = $conn->prepare($chairQuery);
+
+$chairStmt->execute();
+
+$chairResult = $chairStmt->fetchAll(PDO::FETCH_ASSOC);
 
 $id;
 
