@@ -26,4 +26,7 @@
             </p>
         </div>
     </div>
+    <div class="link-home">
+        <a class="link-go-back" href="index.php">Voltar a página de filmes</a>
+    </div>
 </section>

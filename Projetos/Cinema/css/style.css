@@ -229,3 +229,18 @@ main h1, .selected-movie{
     color: white;
     margin: 30px;
 }
+.link-home{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+    box-sizing: border-box;
+}
+.link-go-back{
+    text-align: center;
+    padding: 10px 50px;
+    color: white;
+    background-color: red;
+    text-decoration: none;
+    margin: auto;
+}

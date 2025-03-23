@@ -28,7 +28,6 @@
                             <input type="hidden" name="classificacao_indicativa" value="<?=$movie["classificacao_indicativa"]?>">
                             <input type="hidden" name="sinopse" value="<?=$movie["sinopse"]?>">
                             <button type="submit" class="btn-buy">Selecionar filme</button>
-                            <span>R$ <?= $ticket ?></span>
                         </form>
                     </div>
                 </div>
