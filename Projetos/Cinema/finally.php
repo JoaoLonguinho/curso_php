@@ -5,7 +5,7 @@
     }
 ?>
 
-<section class="cart">
+<!-- <section class="cart">
     <ul>Carrinho:</ul>
         <li>Filme: <?= $_SESSION["movie"]?></li>
         <li>Pipoca: <?= $_SESSION["popcorn"]?></li>
@@ -14,7 +14,7 @@
             <?= $chairs?>,
         <?php endforeach; ?>
         </li>
-</section>
+</section> -->
 <h1 class="main-title">Imprima seu ingresso:</h1>
     <div class="ticket">
         <div >
