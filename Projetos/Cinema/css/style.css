@@ -31,11 +31,19 @@ main h1, .selected-movie{
     background-color: black;
     box-shadow: 0px 0px 10px 0px black;
     border-radius: 5px;
-    padding: 20px;
     box-sizing: border-box;
     /* From https://css.glass */
     color: white;
-    gap: 20px;
+    overflow: hidden;
+}
+.movie-catalog-container-img{
+    width: 100%;
+}
+.movie-catalog-container-img img{
+    width: 100%;
+}
+.movie-catalog-container-infos{
+    padding: 20px;
 }
 .movie-name{
     text-transform: uppercase;
@@ -57,6 +65,11 @@ main h1, .selected-movie{
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+.btn-buy-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .btn-buy{
     background-color: rgb(187, 30, 30);

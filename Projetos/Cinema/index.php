@@ -1,5 +1,6 @@
 <?php
     include_once("templates/header.php");
+
 ?>
 <main>
 
@@ -9,12 +10,17 @@
             <?php foreach($result as $movie): ?>
                 <div class="movie-catalog-container">
                     <div>
-                        <h2 class="movie-name"><?=$movie["name"]?></h2>
-                        <h3 class="movie-category"> Categoria: <?=$movie["category"]?></h3>
-                        <h3 class="movie-age"> Classificação indicativa: <?=$movie["classificacao_indicativa"]?></h3>
-                        <p class="movie-description"> Sinopse: <?=$movie["sinopse"]?></p>
+                        <div class="movie-catalog-container-img">
+                            <img src="<?= $BASE_URL?>img/filme-<?=$movie["id"]?>.jpg" alt="<?=$movie["id"]?>">
+                        </div>
+                        <div class="movie-catalog-container-infos">
+                            <h2 class="movie-name"><?=$movie["name"]?></h2>
+                            <h3 class="movie-category"> Categoria: <?=$movie["category"]?></h3>
+                            <h3 class="movie-age"> Classificação indicativa: <?=$movie["classificacao_indicativa"]?></h3>
+                            <p class="movie-description"> Sinopse: <?=$movie["sinopse"]?></p>
+                        </div>
                     </div>
-                    <div>
+                    <div class="movie-catalog-container-infos">
                         <form class="btn-buy-form" action="comprar.php?id=<?=$movie["id"]?>" method="POST">
                             <input type="hidden" name="id" value="<?=$movie["id"]?>">
                             <input type="hidden" name="name" value="<?=$movie["name"]?>">
@@ -22,6 +28,7 @@
                             <input type="hidden" name="classificacao_indicativa" value="<?=$movie["classificacao_indicativa"]?>">
                             <input type="hidden" name="sinopse" value="<?=$movie["sinopse"]?>">
                             <button type="submit" class="btn-buy">Selecionar filme</button>
+                            <span>R$ <?= $ticket ?></span>
                         </form>
                     </div>
                 </div>
