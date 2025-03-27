@@ -2,7 +2,7 @@
 
 include_once("models/Car.php");
 
-class CarDAO implements CarDAOInterface{ // Está implementando a interface da classe Car, criada nno Car.php
+class CarDAO implements CarDAOInterface{ // Está implementando a interface da classe Car, criada no Car.php
 
     private $conn;
 
