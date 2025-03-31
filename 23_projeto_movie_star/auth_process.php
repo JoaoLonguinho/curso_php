@@ -8,6 +8,8 @@
     $message = new Message($BASE_URL);
     // resgata tipo form
 
+    $userDao = new UserDao($conn, $BASE_URL);
+
     $type = filter_input(INPUT_POST, "type");
 
     // verifica tipo form
@@ -23,8 +25,21 @@
             // Verificacao de dados mínimos
 
             if($name && $lastname && $email && $password){
-
+                if($password === $confirmPassword){
+                    //Verifica se o e-mail já está cadastrado
+                    if($userDao->findByEmail($email) === false){
+                        echo "Nenhum usuário encontrado.";
+                    }
+                    else{
+                        $message->setMessage("E-mail já cadastrado.", "error", "back");
+                    }
+                }
+                else {
+                    // Senhas não batem
+                    $message->setMessage("As senhas não coincidem.", "error", "back");
+                }
             } else {
+                // Dados faltantes
                 $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
             }
             
