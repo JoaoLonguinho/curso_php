@@ -1,6 +1,6 @@
 <?php
 
-require_once "models/user.php";
+require_once "models/User.php";
 
 class UserDao implements userDAOInterface{
 

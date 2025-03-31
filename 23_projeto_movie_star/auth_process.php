@@ -1,9 +1,11 @@
 <?php
-    require_once "models/user.php";
+    require_once "models/User.php";
+    require_once "models/Message.php";
     require_once "dao/userDAO.php";
     require_once "globals.php";
     require_once "db.php";
 
+    $message = new Message($BASE_URL);
     // resgata tipo form
 
     $type = filter_input(INPUT_POST, "type");
@@ -23,7 +25,7 @@
             if($name && $lastname && $email && $password){
 
             } else {
-                // Envia mensagem de erro
+                $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
             }
             
         break;
