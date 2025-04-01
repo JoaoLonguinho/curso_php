@@ -3,13 +3,15 @@
 require_once "models/User.php";
 require_once "models/Message.php";
 
-class UserDao implements userDAOInterface{
+class UserDao implements userDAOInterface
+{
 
     private $conn;
     private $url;
     private $message;
 
-    public function __construct(PDO $conn, $url){
+    public function __construct(PDO $conn, $url)
+    {
         $this->conn = $conn;
         $this->url = $url;
         $this->message = new Message($url);
@@ -30,7 +32,8 @@ class UserDao implements userDAOInterface{
 
         return $user;
     }
-    public function create(User $user, $authUser = false){
+    public function create(User $user, $authUser = false)
+    {
         $stmt = $this->conn->prepare("INSERT INTO users(
         name, lastname, email, password, token
         ) VALUES (
@@ -46,30 +49,49 @@ class UserDao implements userDAOInterface{
 
         //Autenticar usuário caso auth seja true
 
-        if($authUser){
+        if ($authUser) {
             $this->setTokenToSession($user->token);
         }
     }
-    public function update(User $user){
+    public function update(User $user)
+    {
 
     }
-    public function verifyToken($protected = false){
+    public function verifyToken($protected = false)
+    {
+        if (!empty($_SESSION["token"])) {
+            $token = $_SESSION["token"];
+            // Pega o token da session
+            $user = $this->findByToken($token);
 
+            if ($user) {
+                return $user;
+            } else if ($protected) {
+                // Redireciona Usuário não autenticado
+                $this->message->setMessage("É necessário efetuar o login para acessar está página!", "error", "index.php");
+            }
+        } else if ($protected) {
+            // Redireciona Usuário não autenticado
+            $this->message->setMessage("É necessário efetuar o login para acessar está página!", "error", "index.php");
+        }
     }
-    public function setTokenToSession($token, $redirect = true){
+    public function setTokenToSession($token, $redirect = true)
+    {
         // Salvar token na sessao
         $_SESSION["token"] = $token;
 
-        if($redirect){
+        if ($redirect) {
             // Redireciona para o perfil do usuário
             $this->message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
         }
     }
-    public function authenticateUser($email, $password){
+    public function authenticateUser($email, $password)
+    {
 
     }
-    public function findByEmail($email){
-        if($email != ""){
+    public function findByEmail($email)
+    {
+        if ($email != "") {
 
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
 
@@ -77,13 +99,12 @@ class UserDao implements userDAOInterface{
 
             $stmt->execute();
 
-            if($stmt->rowCount() > 0){
+            if ($stmt->rowCount() > 0) {
                 $data = $stmt->fetch();
                 $user = $this->buildUser($data);
 
                 return $user;
-            }
-            else{
+            } else {
                 return false;
             }
 
@@ -91,13 +112,42 @@ class UserDao implements userDAOInterface{
             return false;
         }
     }
-    public function findById($id){
+    public function findById($id)
+    {
 
     }
-    public function findByToken($token){
+    public function findByToken($token)
+    {
+        if ($token != "") {
 
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+
+            $stmt->bindParam(":token", $token);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $data = $stmt->fetch();
+                $user = $this->buildUser($data);
+
+                return $user;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
     }
-    public function changePassword(User $user){
+    public function destroyToken()
+    {
+        // Remove o token da sessao
+        $_SESSION["token"] = "";
+        // Redirecionar e exibir mensagem de logout
+        $this->message->setMessage("Conta deslogada com sucesso!", "success", "index.php");
+    }
+    public function changePassword(User $user)
+    {
 
     }
 }
