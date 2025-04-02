@@ -57,8 +57,30 @@ if($type === "update"){
 
     $userDao->update($userData);
 
-} else if ($type === "changepassword"){
+} else if ($type == "changepassword"){
     // Altera senha
+    $password = filter_input(INPUT_POST, "password");
+    $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
+
+    $userData = $userDao->verifyToken();
+    $id = $userData->id;
+    
+    if($password == $confirmpassword){
+        // Senhas batendo
+        $user = new User();
+        $finalPassword = $user->generatePassword($password);
+        
+        $user->password = $finalPassword;
+        $user->id = $id;
+
+        $userDao->changePassword($user);
+
+    }
+    else{
+        // Senhas não batem
+        $message->setMessage("As senhas não coincidem.", "error", "back");
+    }
+
 } else {
     $message->setMessage("Informações inválidas", "error", "index.php");
 }
