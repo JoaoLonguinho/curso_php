@@ -10,6 +10,10 @@ class User{
     public $bio;
     public $token;
 
+    public function getFullName($user){
+        return "$user->name $user->lastname";
+    }
+
     public function generateToken(){
         return bin2hex(random_bytes(50)); // Deixa a possíbilidade de criar 2 tokens iguais, quase nulas, o random_bytes cria uma string de 50 caracteres, e o bin2hex modifica ela para deixar mais complexa
     }
