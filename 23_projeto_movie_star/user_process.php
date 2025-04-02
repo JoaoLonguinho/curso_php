@@ -31,6 +31,30 @@ if($type === "update"){
     // $user->image = $image;
     $userData->bio = $bio;
 
+    // upload de imagens
+    if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])){
+        $image = $_FILES["image"];
+        $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+        $jpgArray = ["image/jpeg", "image/jpg"];
+        // Checagem de tipo de imagem
+        if(in_array($image["type"], $imageTypes)){
+            // Checar se é jpg
+            if (in_array($image["type"], $jpgArray)) {
+                $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+            } else {
+                //Imagem png 
+                $imageFile = imagecreatefrompng($image["tmp_name"]);
+            }
+            $imageName = $userData->imageGenerateName();
+
+            imagejpeg($imageFile, "./img/users/" . $imageName, 100);
+            $userData->image = $imageName;
+        }
+        else{
+            $message->setMessage("Tipo de arquivo não permitido, por favor envie .jpeg, .jpg ou .png", "error", "index.php");
+        }
+    }
+
     $userDao->update($userData);
 
 } else if ($type === "changepassword"){
