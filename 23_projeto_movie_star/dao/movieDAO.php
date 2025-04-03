@@ -15,6 +15,23 @@ class MovieDao implements MovieDAOInterface{
         $this->message = new Message($url);
     }
 
+    
+    public function buildUser($data) // Cria o filme
+    {
+        $movie = new Movie();
+
+        $movie->id = $data["id"];
+        $movie->title = $data["title"];
+        $movie->description = $data["description"];
+        $movie->image = $data["image"];
+        $movie->trailer = $data["trailer"];
+        $movie->category = $data["category"];
+        $movie->length = $data["length"];
+        $movie->users_id = $data["users_id"];
+
+        return $movie;
+    }
+
     public function buildMovie($data){
 
     }
