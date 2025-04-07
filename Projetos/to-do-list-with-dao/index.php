@@ -9,8 +9,6 @@ $newTaskDao = new TarefaDao($conn);
 
 $newTaskList = $newTaskDao->bringTasks();
 
-print_r($newTaskList);
-
 ?>
 
 <!DOCTYPE html>
