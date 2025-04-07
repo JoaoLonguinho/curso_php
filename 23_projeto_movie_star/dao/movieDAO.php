@@ -17,8 +17,7 @@ class MovieDao implements MovieDAOInterface
         $this->message = new Message($url);
     }
 
-
-    public function buildUser($data) // Cria o filme
+    public function buildMovie($data)
     {
         $movie = new Movie();
 
@@ -33,18 +32,27 @@ class MovieDao implements MovieDAOInterface
 
         return $movie;
     }
-
-    public function buildMovie($data)
-    {
-
-    }
     public function findAll()
     {
 
     }
     public function getLatestMovies()
     {
+        $movies = [];
+        $stmt = $this->conn->query("SELECT * FROM movies ORDER BY id DESC");
 
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+
+            $moviesArray = $stmt->fetchAll();
+
+            foreach($moviesArray as $movie){
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+
+        return $movies;
     }
     public function getMoviesByCategory($category)
     {
