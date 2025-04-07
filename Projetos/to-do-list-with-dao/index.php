@@ -41,7 +41,7 @@ print_r($newTaskList);
                 <ul>
                     <?php if(isset($newTaskList)): ?>
                         <?php foreach($newTaskList as $task): ?>
-                            <li> <?= $task ?> </li>
+                            <li> <?= $task->getTaskName() ?> </li>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </ul>

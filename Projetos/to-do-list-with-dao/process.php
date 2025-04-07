@@ -19,7 +19,6 @@ if(isset($_POST["tasks"])){
     // Inserir o nome da tarefa no banco
     $newTaskDao->buildTask($newTask);
 
-    
     $newTaskDao->bringTasks();
 
     header("Location: index.php");

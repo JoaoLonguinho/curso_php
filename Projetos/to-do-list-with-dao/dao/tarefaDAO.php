@@ -21,12 +21,13 @@ class TarefaDao implements tarefaDAOInterface{
     }
 
     public function bringTasks(){
-
         $taskName = [];
-
+        
         $stmt = $this->conn->prepare("SELECT * FROM tasks");
+        
+        $stmt->execute();
 
-        $tasks = $stmt->fetchAll();
+        $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($tasks as $task){
             $taskRegistred = new Tarefa();
@@ -34,8 +35,8 @@ class TarefaDao implements tarefaDAOInterface{
             $taskRegistred->setTaskName($task["tasks"]);
 
             $taskName[] = $taskRegistred;
-        }
 
+        }
         return $taskName;
     }
 }
