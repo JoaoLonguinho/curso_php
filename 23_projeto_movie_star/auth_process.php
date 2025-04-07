@@ -8,7 +8,7 @@ require_once "db.php";
 $message = new Message($BASE_URL);
 // resgata tipo form
 
-$userDao = new UserDao($conn, $BASE_URL);
+$userDao = new UserDao($conn, $BASE_URL); // aloca um espaço dentro da memória ram e morre assim que o servidor é desligado
 
 $type = filter_input(INPUT_POST, "type");
 
@@ -18,7 +18,7 @@ if($type == "register"){
         $name = filter_input(INPUT_POST, "name");
         $lastname = filter_input(INPUT_POST, "lastname");
         $email = filter_input(INPUT_POST, "email");
-        $password = filter_input(INPUT_POST, "password");
+        $password = filter_input(INPUT_POST, "password"); 
         $confirmPassword = filter_input(INPUT_POST, "confirmPassword");
 
         // Verificacao de dados mínimos
