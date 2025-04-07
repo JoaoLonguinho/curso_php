@@ -34,8 +34,39 @@ if($type === "create"){
         $movie->category = $category;
         $movie->trailer = $trailer;
         $movie->description = $description;
+        $movie->users_id = $userData->id;
 
         // Upload de imagem
+
+        if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])){
+            $image = $_FILES["image"];
+            $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+            $jpgArray = ["image/jpeg", "image/jpg"];
+
+            // Checando tipo imagem
+            if(in_array($image["type"], $imageTypes)){
+                // Checa se a imagem é jpg ou jpeg
+                if(in_array($image["type"], $jpgArray)){
+                    $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+                }
+                else{
+                    $imageFile = imagecreatefrompng($image["tmp_name"]);
+                }
+
+                // Gerando o nome da imagem
+                $imageName = $movie->imageGenerateName();
+
+                imagejpeg($imageFile, "./img/movies/" . $imageName, 100);
+
+                $movie->image = $imageName;
+            }
+            else{
+                $message->setMessage("Tipo de arquivo inválido, por favor utilizar apenas jpg, jpeg ou png.", "error", "back");
+            }
+        }
+        
+        $movieDao->create($movie);
+        
     }
     else{
         $message->setMessage("Por favor preecha pelo menos o título, a descrição e a categoria para incluir o filme!", "error", "back");
