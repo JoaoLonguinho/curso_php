@@ -80,5 +80,5 @@ else if($type === "delete"){
 
 }
 else{
-    $message->setMessage("Filme adicionado!", "cuccess", "index.php");
+    $message->setMessage("Filme adicionado!", "success", "index.php");
 }
