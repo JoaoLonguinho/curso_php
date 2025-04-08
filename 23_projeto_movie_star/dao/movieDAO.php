@@ -56,11 +56,26 @@ class MovieDao implements MovieDAOInterface
     }
     public function getMoviesByCategory($category)
     {
+        $movies = [];
 
+        $stmt = $this->conn->prepare("SELECT * FROM movies WHERE category = :category ORDER BY id DESC");
+
+        $stmt->bindParam(":category", $category);
+
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            $moviesArray = $stmt->fetchAll();
+
+            foreach($moviesArray as $movie){
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+        return $movies;
     }
     public function getMoviesById($id)
     {
-
+        
     }
     public function findById($id)
     {
@@ -119,6 +134,24 @@ class MovieDao implements MovieDAOInterface
     public function destroy(Movie $movie)
     {
 
+    }
+
+    public function getMoviesByUserId($id){
+        $movies = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM movies WHERE users_id = :users_id ORDER BY id ASC");
+
+        $stmt->bindParam(":users_id", $id);
+
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            $moviesArray = $stmt->fetchAll();
+            foreach($moviesArray as $movie){
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+        return $movies;
     }
 
 }

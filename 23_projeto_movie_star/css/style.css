@@ -360,12 +360,14 @@ body{
   #add-movie-container {
     text-align: right;
   }
-  
+
   #movies-dashboard .table {
     color: #FFF;
+    
   }
   
   #movies-dashboard .table th {
+    
     border-top: none;
   }
   
@@ -374,7 +376,7 @@ body{
   }
   
   .table-movie-title {
-    color: #FFF;
+    color: black;
     font-weight: bold;
     transition: .5s;
   }

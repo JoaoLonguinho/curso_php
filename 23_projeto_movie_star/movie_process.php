@@ -73,6 +73,12 @@ if($type === "create"){
     }
 
 }
+else if($type === "delete"){
+    // $userId = $userData->id; // Pega o ID do usuário
+
+
+
+}
 else{
     $message->setMessage("Filme adicionado!", "cuccess", "index.php");
 }

@@ -6,9 +6,9 @@
 
     $latestMovies = $movieDao->getLatestMovies();
 
-    $actionMovies = [];
+    $actionMovies = $movieDao->getMoviesByCategory("Ação");
 
-    $comedyMovies = [];
+    $comedyMovies = $movieDao->getMoviesByCategory("Comédia");
     
 ?>
     <div id="main-container" class="container-fluid">
