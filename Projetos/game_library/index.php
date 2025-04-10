@@ -28,7 +28,7 @@ $gameList = $gameDao->bringGames();
                         <form action="gameview.php" method="GET">
                             <input type="hidden" name="gameView" value="<?= $game->id ?>">
                             <input type="hidden" name="gameId" value="<?= $game->id ?>">
-                            <button class="edit-btn" type="submit">
+                            <button class="view-btn" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </form>

@@ -24,7 +24,11 @@ $game = $gameDao->bringSelectedGame($gameId);
 <section class="new-game-content">
     <div class="game-content">
         <div class="img-cover">
-            <img src="img/games/<?= $game->image; ?>" alt="">
+            <?php if(empty($game->image)): ?>
+                <img src="img/games/placeholder.jpg" alt="">
+            <?php else: ?>
+                <img src="img/games/<?= $game->image; ?>" alt="">
+            <?php endif; ?>
         </div>
         <div class="game-info">
             <h2><?= $game->title; ?></h2>
