@@ -25,9 +25,16 @@ $gameList = $gameDao->bringGames();
             <div class="game-card">
                 <?php if (empty($game->image)): ?>
                     <div class="game-img" style="background-image: url('img/games/placeholder.jpg');">
-                        <form action="editgame.php?gameId=<?= $game->id ?>" method="POST">
+                        <form action="gameview.php" method="GET">
+                            <input type="hidden" name="gameView" value="<?= $game->id ?>">
+                            <input type="hidden" name="gameId" value="<?= $game->id ?>">
+                            <button class="edit-btn" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                        <form action="editgame.php" method="POST">
                             <input type="hidden" name="gameToEdit" value="<?= $game->id ?>">
-                            <input type="hidden" name="type" value="edit">
+                            <input type="hidden" name="gameId" value="<?= $game->id ?>">
                             <button class="edit-btn" type="submit">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
@@ -42,6 +49,13 @@ $gameList = $gameDao->bringGames();
                     </div>
                 <?php else: ?>
                     <div class="game-img" style="background-image: url('img/games/<?= $game->image ?>');">
+                        <form action="gameview.php" method="GET">
+                            <input type="hidden" name="gameView" value="<?= $game->id ?>">
+                            <input type="hidden" name="gameId" value="<?= $game->id ?>">
+                            <button class="view-btn" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
                         <form action="editgame.php" method="POST">
                             <input type="hidden" name="gameToEdit" value="<?= $game->id ?>">
                             <input type="hidden" name="gameId" value="<?= $game->id ?>">
@@ -63,7 +77,7 @@ $gameList = $gameDao->bringGames();
                     <h2 class="game-title"><?= $game->title ?></h2>
                     <p><?= $game->description ?></p>
                     <?php if (isset($game->rating)): ?>
-                        <p>Nota: <?= $game->rating ?></p>
+                        <p class="rating"><?= $game->rating ?> <img src="img/star.png" alt="" class="formed-stars"></p>
                     <?php else: ?>
                         <p>O jogo ainda não possui nota.</p>
                     <?php endif; ?>

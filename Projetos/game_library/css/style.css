@@ -125,7 +125,7 @@ main {
 .game-img form:last-child{
     margin-right: 20px;
 }
-.edit-btn, .remove-btn{
+.edit-btn, .remove-btn, .view-btn{
     margin-top: 20px;
     width: 40px;
     height: 40px;
@@ -133,14 +133,16 @@ main {
     border: none;
     box-shadow: 0px 0px 10px 0px #1a1a1a;
     cursor: pointer;
+    color: white;
+}
+.view-btn{
+    background-color: blue;
 }
 .remove-btn {
     background-color: red;
-    color: white;
 }
 .edit-btn{
     background-color: green;
-    color: white;
 }
 
 .game-title{
@@ -157,6 +159,17 @@ main {
     list-style-type: none;
     justify-content: center;
     gap: 5px;
+}
+.rating{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+.formed-stars{
+    padding: 0;
+    width: 18px;
+    padding-top: 2.5px;
 }
 .stars-container{
     padding: 0;
