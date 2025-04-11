@@ -19,17 +19,25 @@ $userData = $userDao->verifyToken();
 
 
 if($type === "delete"){
-    $movie = new Movie();
-
     $id = filter_input(INPUT_POST, "id");
+
+    $movie = $movieDao->findById($id);
+
+    if($movie){
+        if($movie->users_id === $userData->id){
+            $movieDao->destroy($movie->id);
+        }
+        else{
+            $message->setMessage("Informações inválidas!", "error", "index.php");
+        }
+    }
+    else {
+        $message->setMessage("Informações inválidas!", "error", "index.php");
+    }
     
-    $movie->id = $id;
-
-    $movieToDelete = $movieDao->destroy($movie);
-
-    $message->setMessage("Filme excluído com sucesso!", "success", "index.php");
+    
 }
-if($type === "create"){
+else if($type === "create"){
 
     $title = filter_input(INPUT_POST, "title");
     // $image = filter_input(INPUT_POST, "image");
