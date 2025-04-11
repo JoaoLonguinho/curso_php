@@ -17,6 +17,18 @@ $type = filter_input(INPUT_POST, "type");
 
 $userData = $userDao->verifyToken();
 
+
+if($type === "delete"){
+    $movie = new Movie();
+
+    $id = filter_input(INPUT_POST, "id");
+    
+    $movie->id = $id;
+
+    $movieToDelete = $movieDao->destroy($movie);
+
+    $message->setMessage("Filme excluído com sucesso!", "success", "index.php");
+}
 if($type === "create"){
 
     $title = filter_input(INPUT_POST, "title");

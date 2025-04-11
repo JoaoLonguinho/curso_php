@@ -153,7 +153,12 @@ class MovieDao implements MovieDAOInterface
     }
     public function destroy(Movie $movie)
     {
+        $id = $movie->id;
+        $stmt = $this->conn->prepare("DELETE FROM movies WHERE id = :id");
 
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
     }
 
     public function getMoviesByUserId($id){
