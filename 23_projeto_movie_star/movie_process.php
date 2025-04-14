@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "globals.php";
 require_once "db.php";
 require_once "models/Movie.php";
@@ -18,26 +18,23 @@ $type = filter_input(INPUT_POST, "type");
 $userData = $userDao->verifyToken();
 
 
-if($type === "delete"){
+if ($type === "delete") {
     $id = filter_input(INPUT_POST, "id");
 
     $movie = $movieDao->findById($id);
 
-    if($movie){
-        if($movie->users_id === $userData->id){
+    if ($movie) {
+        if ($movie->users_id === $userData->id) {
             $movieDao->destroy($movie->id);
-        }
-        else{
+        } else {
             $message->setMessage("Informações inválidas!", "error", "index.php");
         }
-    }
-    else {
+    } else {
         $message->setMessage("Informações inválidas!", "error", "index.php");
     }
-    
-    
-}
-else if($type === "create"){
+
+
+} else if ($type === "create") {
 
     $title = filter_input(INPUT_POST, "title");
     // $image = filter_input(INPUT_POST, "image");
@@ -48,7 +45,7 @@ else if($type === "create"){
 
     $movie = new Movie();
 
-    if(!empty($title) && !empty($category) && !empty($description)){
+    if (!empty($title) && !empty($category) && !empty($description)) {
         $movie->title = $title;
         $movie->length = $length;
         $movie->category = $category;
@@ -58,18 +55,17 @@ else if($type === "create"){
 
         // Upload de imagem
 
-        if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])){
+        if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
             $image = $_FILES["image"];
             $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
             $jpgArray = ["image/jpeg", "image/jpg"];
 
             // Checando tipo imagem
-            if(in_array($image["type"], $imageTypes)){
+            if (in_array($image["type"], $imageTypes)) {
                 // Checa se a imagem é jpg ou jpeg
-                if(in_array($image["type"], $jpgArray)){
+                if (in_array($image["type"], $jpgArray)) {
                     $imageFile = imagecreatefromjpeg($image["tmp_name"]);
-                }
-                else{
+                } else {
                     $imageFile = imagecreatefrompng($image["tmp_name"]);
                 }
 
@@ -79,26 +75,82 @@ else if($type === "create"){
                 imagejpeg($imageFile, "./img/movies/" . $imageName, 100);
 
                 $movie->image = $imageName;
-            }
-            else{
+            } else {
                 $message->setMessage("Tipo de arquivo inválido, por favor utilizar apenas jpg, jpeg ou png.", "error", "back");
             }
         }
-        
+
         $movieDao->create($movie);
-        
-    }
-    else{
+
+    } else {
         $message->setMessage("Por favor preecha pelo menos o título, a descrição e a categoria para incluir o filme!", "error", "back");
     }
 
-}
-else if($type === "delete"){
-    // $userId = $userData->id; // Pega o ID do usuário
+} else if ($type === "update") {
+    $movie = new Movie();
 
+    $id = filter_input(INPUT_POST, "id");
+    $title = filter_input(INPUT_POST, "title");
+    // $image = filter_input(INPUT_POST, "image");
+    $length = filter_input(INPUT_POST, "length");
+    $category = filter_input(INPUT_POST, "category");
+    $trailer = filter_input(INPUT_POST, "trailer");
+    $description = filter_input(INPUT_POST, "description");
 
+    $movieData = $movieDao->findById($id);
 
-}
-else{
+    if ($movieData) {
+        if ($movieData->users_id === $userData->id) {
+            if (!empty($title) && !empty($category) && !empty($description)) {
+                // seta os dados atualizados as propriedades do $movieData
+                $movieData->id = $id;
+                $movieData->title = $title;
+                $movieData->length = $length;
+                $movieData->category = $category;
+                $movieData->trailer = $trailer;
+                $movieData->description = $description;
+
+                // Upload de imagem
+
+                if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
+                    $image = $_FILES["image"];
+                    $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+                    $jpgArray = ["image/jpeg", "image/jpg"];
+
+                    // Checando tipo imagem
+                    if (in_array($image["type"], $imageTypes)) {
+                        // Checa se a imagem é jpg ou jpeg
+                        if (in_array($image["type"], $jpgArray)) {
+                            $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+                        } else {
+                            $imageFile = imagecreatefrompng($image["tmp_name"]);
+                        }
+
+                        // Gerando o nome da imagem
+                        $imageName = $movie->imageGenerateName();
+
+                        imagejpeg($imageFile, "./img/movies/" . $imageName, 100);
+
+                        $movieData->image = $imageName;
+                    } else {
+                        $message->setMessage("Tipo de arquivo inválido, por favor utilizar apenas jpg, jpeg ou png.", "error", "back");
+                    }
+                }
+                // Ativa o método update da MovieDao passando o movieData
+                $movieDao->update($movieData);
+                $message->setMessage("Dados atualizados com sucesso!", "success", "dashboard.php");
+            } 
+            else{
+                $message->setMessage("Título, descrição e categoria precisam estar preenchidos!", "error", "index.php");
+            }
+
+        } else {
+            $message->setMessage("Informações inválidas!", "error", "index.php");
+        }
+    } else {
+        $message->setMessage("Informações inválidas!", "error", "index.php");
+    }
+
+} else {
     $message->setMessage("Filme adicionado!", "success", "index.php");
 }
