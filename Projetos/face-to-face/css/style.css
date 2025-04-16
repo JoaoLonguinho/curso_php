@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.main-menu{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.players-choose{
+    padding-top: 20px;
+}
+.players-choose a{
+    padding: 10px 30px;
+    border: 1px solid rgb(133, 198, 255);
+}
+main{
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    border: 1px solid rgb(159, 207, 249);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.all-characters{
+    box-sizing: border-box;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+.character, .hidden-character{
+    background-color: transparent;
+    width: 150px;
+    height: 200px;
+    border: 1px solid rgb(118, 118, 118);
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.character:hover{
+    cursor: pointer;
+}
+
+.character-photo{
+    width: 100%;
+    height: 80%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.character-info{
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Game over */
+
+.game-over{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
