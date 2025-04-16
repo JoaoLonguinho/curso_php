@@ -7,9 +7,18 @@ $selectedCharacter = new Character();
 
 $characterDao = new CharacterDao($conn);
 
-$selectedCharacter = $characterDao->bringChosenCharacterPlayerTwo();
+$selectedCharacter = $characterDao->bringChosenCharacter();
+
+$myCharacter = new Character();
+
+$myCharacter = $characterDao->bringChosenCharacterPlayerTwo();
+
+if(empty($myCharacter) || empty($selectedCharacter)){
+    header("Location: index.php");
+}
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -24,7 +33,8 @@ $selectedCharacter = $characterDao->bringChosenCharacterPlayerTwo();
 <body>
     <main>
         <section class="game-over">
-            <p>Você perdeu, o personagem do outro jogador era: </p>
+            <p>Você venceu!</p>
+            <p>O personagem do outro jogador era:</p>
             <section class="hidden-character">
                 <div class="character-photo"
                     style="background-image: url('img/characters/<?= $selectedCharacter->image; ?>'); background-position: center; background-size: 100%;">
@@ -34,7 +44,6 @@ $selectedCharacter = $characterDao->bringChosenCharacterPlayerTwo();
                     <?= $selectedCharacter->name; ?>
                 </div>
             </section>
-
             <a href="index.php">Deseja jogar novamente?</a>
         </section>
     </main>

@@ -8,26 +8,26 @@ if (isset($_POST)) {
         $chosenCharacter = new Character();
         $characterDao = new CharacterDao($conn);
         $selectedCharacter = new Character();
-        $chosenCharacter = $characterDao->bringChosenCharacterPlayerTwo();
+        $chosenCharacter = $characterDao->bringChosenCharacter();
         $selectedCharacter->id = $_POST["characterId"];
         $selectedCharacter->name = $_POST["characterName"];
         $selectedCharacter->image = $_POST["characterImage"];
         $selectedCharacter->selected = true;
     if($_POST["guessOrRemove"] === "guess"){
         if($chosenCharacter->id == $selectedCharacter->id){
-            header("Location: player1win.php");
+            header("Location: player2win.php");
         }
         else{
-            header("Location: gameOver.php");
+            header("Location: gameOverPlayer2.php");
         }
     }
     else{
         if($chosenCharacter->id != $selectedCharacter->id){
             $characterDao->hideChar($selectedCharacter);
-            header("Location: player1ready.php");
+            header("Location: player2ready.php");
         }
         else{
-            header("Location: gameOver.php");
+            header("Location: gameOverPlayer2.php");
         }
     }
 }

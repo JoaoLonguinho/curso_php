@@ -15,13 +15,12 @@ $selectedCharacter = new Character();
 
 $characterToHide = new Character();
 
-$selectedCharacter = $characterDao->bringChosenCharacter();
+$selectedCharacter = $characterDao->bringChosenCharacterPlayerTwo();
 
 if (empty($selectedCharacter)) {
     $characterDao->resetGame();
-    header("Location: gameOver.php");
+    header("Location: gameOverPlayer2.php");
 }
-
 
 ?>
 
@@ -49,7 +48,7 @@ if (empty($selectedCharacter)) {
                     <div class="character-info">
                         <div><?= $char->name ?> <i class="fa-solid fa-flag"></i></div>
                         <div class="character-guess-or-remove">
-                            <form action="hidechar.php" method="POST">
+                            <form action="hidechar2.php" method="POST">
                                 <input type="hidden" name="characterId" value="<?= $char->id; ?>">
                                 <input type="hidden" name="characterName" value="<?= $char->name; ?>">
                                 <input type="hidden" name="characterImage" value="<?= $char->image; ?>">
@@ -58,7 +57,7 @@ if (empty($selectedCharacter)) {
                                     Palpitar
                                 </button>
                             </form>
-                            <form action="hidechar.php" method="POST">
+                            <form action="hidechar2.php" method="POST">
                                 <input type="hidden" name="characterId" value="<?= $char->id; ?>">
                                 <input type="hidden" name="characterName" value="<?= $char->name; ?>">
                                 <input type="hidden" name="characterImage" value="<?= $char->image; ?>">

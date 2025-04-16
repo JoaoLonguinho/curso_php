@@ -7,7 +7,7 @@ $selectedCharacter = new Character();
 
 $characterDao = new CharacterDao($conn);
 
-$selectedCharacter = $characterDao->bringChosenCharacterPlayerTwo();
+$selectedCharacter = $characterDao->bringChosenCharacter();
 
 ?>
 

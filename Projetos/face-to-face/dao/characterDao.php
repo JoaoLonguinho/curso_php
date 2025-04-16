@@ -57,6 +57,18 @@ class CharacterDao
 
         $stmt->execute();
     }
+    public function setChosenCharacterPlayerTwo(Character $char)
+    { // Seta o personagem escolhido
+        $clean = $this->conn->prepare("UPDATE characters SET selectedPlayer2 = 0");
+
+        $clean->execute();
+
+        $stmt = $this->conn->prepare("UPDATE characters SET selectedPlayer2 = 1 WHERE id = :id");
+
+        $stmt->bindParam(":id", $char->id);
+
+        $stmt->execute();
+    }
 
     public function bringChosenCharacter()
     {
@@ -75,8 +87,24 @@ class CharacterDao
 
             return $selectedCharacter;
         }
+    }
+    public function bringChosenCharacterPlayerTwo()
+    {
+        $selectedCharacter = new Character();
 
+        $stmt = $this->conn->prepare("SELECT * FROM characters WHERE selectedPlayer2 = 1");
 
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetch();
+
+            $selectedCharacter->id = $result["id"];
+            $selectedCharacter->name = $result["name"];
+            $selectedCharacter->image = $result["image"];
+
+            return $selectedCharacter;
+        }
     }
 
     public function hideChar(Character $char)

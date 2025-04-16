@@ -43,17 +43,19 @@ main{
     height: 80%;
     display: flex;
     flex-flow: row wrap;
-
 }
 
 .character, .hidden-character{
     background-color: transparent;
     width: 150px;
     height: 200px;
-    border: 1px solid rgb(118, 118, 118);
     padding: 10px;
+    border: 1px solid rgb(118, 118, 118);
     box-sizing: border-box;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .character:hover{
     cursor: pointer;
@@ -63,15 +65,28 @@ main{
     width: 100%;
     height: 80%;
     border: 1px solid black;
+    flex-grow: 2;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .character-info{
+    padding: 5px;
     height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    
+}
+.character-guess-or-remove{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.guess-btn i{
+    color: black;
 }
 /* Game over */
 
