@@ -9,7 +9,7 @@ $character = new Character();
 
 $characterDao = new CharacterDao($conn);
 
-$character = $characterDao->getData();
+$character = $characterDao->getDataPlayer1();
 
 $selectedCharacter = new Character();
 
