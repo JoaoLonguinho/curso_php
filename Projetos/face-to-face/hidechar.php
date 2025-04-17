@@ -23,7 +23,7 @@ if (isset($_POST)) {
     }
     else{
         if($chosenCharacter->id != $selectedCharacter->id){
-            $characterDao->hideChar($selectedCharacter);
+            $characterDao->hideCharPlayer2($selectedCharacter);
             header("Location: player1ready.php");
         }
         else{
