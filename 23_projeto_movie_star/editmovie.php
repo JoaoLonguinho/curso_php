@@ -1,10 +1,10 @@
 <?php
-  require_once("templates/header.php");
+  require_once "templates/header.php";
 
   // Verifica se usuário está autenticado
-  require_once("models/User.php");
-  require_once("dao/UserDAO.php");
-  require_once("dao/MovieDAO.php");
+  require_once "models/User.php";
+  require_once "dao/UserDAO.php";
+  require_once "dao/MovieDAO.php";
 
   $user = new User();
   $userDao = new UserDao($conn, $BASE_URL);

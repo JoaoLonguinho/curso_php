@@ -9,7 +9,6 @@ require_once "dao/movieDAO.php";
 $message = new Message($BASE_URL);
 
 $movieDao = new MovieDao($conn, $BASE_URL);
-// resgata tipo form
 
 $userDao = new UserDao($conn, $BASE_URL);
 
