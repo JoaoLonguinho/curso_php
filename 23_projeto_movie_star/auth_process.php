@@ -14,66 +14,60 @@ $type = filter_input(INPUT_POST, "type");
 
 // verifica tipo form
 
-if($type == "register"){
-        $name = filter_input(INPUT_POST, "name");
-        $lastname = filter_input(INPUT_POST, "lastname");
-        $email = filter_input(INPUT_POST, "email");
-        $password = filter_input(INPUT_POST, "password"); 
-        $confirmPassword = filter_input(INPUT_POST, "confirmPassword");
+if ($type == "register") {
+    $name = filter_input(INPUT_POST, "name");
+    $lastname = filter_input(INPUT_POST, "lastname");
+    $email = filter_input(INPUT_POST, "email");
+    $password = filter_input(INPUT_POST, "password");
+    $confirmPassword = filter_input(INPUT_POST, "confirmPassword");
 
-        // Verificacao de dados mínimos
+    // Verificacao de dados mínimos
 
-        if ($name && $lastname && $email && $password) {
-            if ($password === $confirmPassword) {
-                //Verifica se o e-mail já está cadastrado
-                if ($userDao->findByEmail($email) === false) {
-                    $user = new User();
+    if ($name && $lastname && $email && $password) {
+        if ($password === $confirmPassword) {
+            //Verifica se o e-mail já está cadastrado
+            if ($userDao->findByEmail($email) === false) {
+                $user = new User();
 
-                    // Criação de token + senha 
-                    $userToken = $user->generateToken();
-                    $finalPassword = $user->generatePassword($password);
+                // Criação de token + senha 
+                $userToken = $user->generateToken();
+                $finalPassword = $user->generatePassword($password);
 
-                    $user->name = $name;
-                    $user->lastname = $lastname;
-                    $user->email = $email;
-                    $user->password = $finalPassword;
-                    $user->token = $userToken;
+                $user->name = $name;
+                $user->lastname = $lastname;
+                $user->email = $email;
+                $user->password = $finalPassword;
+                $user->token = $userToken;
 
-                    $auth = true;
+                $auth = true;
 
-                    $userDao->create($user, $auth);
-                } else {
-                    $message->setMessage("E-mail já cadastrado.", "error", "back");
-                }
+                $userDao->create($user, $auth);
             } else {
-                // Senhas não batem
-                $message->setMessage("As senhas não coincidem.", "error", "back");
+                $message->setMessage("E-mail já cadastrado.", "error", "back");
             }
         } else {
-            // Dados faltantes
-            $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
+            // Senhas não batem
+            $message->setMessage("As senhas não coincidem.", "error", "back");
         }
+    } else {
+        // Dados faltantes
+        $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
     }
-    else if($type == "login"){
+} else if ($type == "login") {
 
-        $email = filter_input(INPUT_POST, "email");
-        $password = filter_input(INPUT_POST, "password");
+    $email = filter_input(INPUT_POST, "email");
+    $password = filter_input(INPUT_POST, "password");
 
-        $user = new User();
+    $user = new User();
 
-        //Tenta autenticar usuário
-        if ($userDao->authenticateUser($email, $password)) {
-
-            $user = $userDao->findByEmail($email);
-            
-            // Redireciona caso não autentique
-            $message->setMessage("Seja bem vindo $user->name!", "success", "editprofile.php");
-        } else {
-            $message->setMessage("Usuário e/ou senha incorretos.", "error", "back");
-        } 
-
+    //Tenta autenticar usuário
+    if ($userDao->authenticateUser($email, $password)) {
+        $user = $userDao->findByEmail($email);
+        // Redireciona caso não autentique
+        $message->setMessage("Seja bem vindo $user->name!", "success", "profile.php");
+    } else {
+        $message->setMessage("Usuário e/ou senha incorretos.", "error", "back");
     }
-
-    else{
-        $message->setMessage("Informações inválidas", "error", "index.php");
-    }
+} else {
+    $message->setMessage("Informações inválidas", "error", "index.php");
+}
