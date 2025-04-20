@@ -30,14 +30,12 @@
         }
     }
 
- 
+   // Checar se o filme é do usuário
+   $userOwnsMovie = false;
 
     if(!empty($userData)){
         if($userData->id === $movie->users_id){
             $userOwnsMovie = true;
-        }
-        else {
-            $userOwnsMovie = false;
         }
 
            // Checa se o filme é do usuário
