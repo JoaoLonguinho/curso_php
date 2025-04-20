@@ -37,10 +37,11 @@ if($type === "create"){
             $reviewObject->movies_id = $movies_id;
             $reviewObject->users_id = $users_id;
 
+
             $reviewDao->create($reviewObject);
         }
         else{
-            $message->setMessage("Nova e comentário não podem estar vazias.", "error", "index.php");    
+            $message->setMessage("Nota e comentário não podem estar vazias.", "error", "back");    
         }
 
     }

@@ -4,9 +4,12 @@
     // Verifica se usuário está autenticado
     require_once("models/Movie.php");
     require_once("dao/movieDAO.php");
+    require_once("dao/reviewDAO.php");
 
     $user = new User();
     $userDao = new UserDao($conn, $BASE_URL);
+
+    $reviewDao = new ReviewDAO($conn, $BASE_URL);
 
     // $userData = $userDao->verifyToken(true);
 
@@ -27,19 +30,23 @@
         }
     }
 
-    // Checa se o filme é do usuário
-    $userOwnsMovie = false;
+ 
 
     if(!empty($userData)){
         if($userData->id === $movie->users_id){
             $userOwnsMovie = true;
         }
+        else {
+            $userOwnsMovie = false;
+        }
+
+           // Checa se o filme é do usuário
+        $alreadyReviewed = $reviewDao->hasAlreadyReviewed($id, $userData->id);
     }
 
+    
     // Resgata reviews do filmes
-    $alreadyReviewed = false;
-
-
+    $movieReviews = $reviewDao->getMoviesReview($movie->id);
 
 ?>
 <div id="main-container" class="container-fluid">

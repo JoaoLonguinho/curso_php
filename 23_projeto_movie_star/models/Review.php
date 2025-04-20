@@ -4,7 +4,7 @@ class Review{
     public $id;
     public $rating;
     public $review;
-    public $user_id;
+    public $users_id;
     public $movies_id;
 
 }

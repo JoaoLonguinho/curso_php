@@ -25,25 +25,20 @@ class ReviewDAO implements ReviewDAOInterface
         $reviewObject->id = $data["id"];
         $reviewObject->rating = $data["rating"];
         $reviewObject->review = $data["review"];
-        $reviewObject->user_id = $data["user_id"];
+        $reviewObject->users_id = $data["users_id"];
         $reviewObject->movies_id = $data["movies_id"];
 
         return $reviewObject;
     }
     public function create(Review $review){
-        $rating = $review->rating;
-        $review = $review->review;
-        $movies_id = $review->movies_id;
-        $users_id = $review->users_id;
-
-        $stmt = $this->conn->prepare("INSERT INTO movies (rating, review, movies_id, users_id) 
+        $stmt = $this->conn->prepare("INSERT INTO reviews (rating, review, movies_id, users_id) 
         VALUES 
         (:rating, :review, :movies_id, :users_id)");
 
-        $stmt->bindParam("rating", $rating);
-        $stmt->bindParam("review", $review);
-        $stmt->bindParam("movies_id", $movies_id);
-        $stmt->bindParam("users_id", $users_id);
+        $stmt->bindParam("rating", $review->rating);
+        $stmt->bindParam("review", $review->review);
+        $stmt->bindParam("movies_id", $review->movies_id);
+        $stmt->bindParam("users_id", $review->users_id);
 
         $stmt->execute();
 
@@ -52,9 +47,49 @@ class ReviewDAO implements ReviewDAOInterface
     }
     public function getMoviesReview($id){
 
+        $reviews = [];
+        
+        $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id");
+
+        $stmt->bindParam("movies_id", $id);
+
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            
+            $reviewsData = $stmt->fetchAll();
+
+            $userDao = new UserDao($this->conn, $this->url);
+
+            foreach($reviewsData as $review){
+
+                $reviewObject = $this->buildReview($review);
+
+                #chama dados do usuário
+                $user = $userDao->findById($reviewObject->users_id);
+
+                $reviewObject->user = $user;
+
+                $reviews[] = $reviewObject;
+            }
+        }
+        return $reviews;
+
     }
     public function hasAlreadyReviewed($id, $userId){
+        $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id AND users_id = :users_id");
 
+        $stmt->bindParam(":movies_id", $movies_id);
+        $stmt->bindParam(":users_id", $users_id);
+
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     public function getRatings($id){
 
