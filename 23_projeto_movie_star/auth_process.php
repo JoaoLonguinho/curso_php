@@ -59,10 +59,15 @@ if($type == "register"){
         $email = filter_input(INPUT_POST, "email");
         $password = filter_input(INPUT_POST, "password");
 
-        //Tenta autenticar usuário]
+        $user = new User();
+
+        //Tenta autenticar usuário
         if ($userDao->authenticateUser($email, $password)) {
+
+            $user = $userDao->findByEmail($email);
+            
             // Redireciona caso não autentique
-            $message->setMessage("Dados atualizados com sucesso!", "success", "editprofile.php");
+            $message->setMessage("Seja bem vindo $user->name!", "success", "editprofile.php");
         } else {
             $message->setMessage("Usuário e/ou senha incorretos.", "error", "back");
         } 
