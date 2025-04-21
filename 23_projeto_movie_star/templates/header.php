@@ -51,7 +51,8 @@ $userData = $userDao->verifyToken(false);
                 aria-controls="navbar" aria-expanded="false" aria-label="Toggle-navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
+            <!-- Formulário de pesquisa -->
+            <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
                 <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search"
                     placeholder="Buscar filmes" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
