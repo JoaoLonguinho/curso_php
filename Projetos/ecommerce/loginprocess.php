@@ -49,9 +49,11 @@ if(isset($_POST)){
             $email = filter_input(INPUT_POST, "email");
             $password = filter_input(INPUT_POST, "password");
 
+            
+
             if($userDao->checkData($email, $password)){
-                
-            };
+
+            }
 
 
         }

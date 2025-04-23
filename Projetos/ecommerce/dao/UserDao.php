@@ -3,8 +3,10 @@
 require_once "db.php";
 require_once "globals.php";
 require_once "model/Message.php";
+require_once "model/User.php";
 
 $message = new Message($BASE_URL);
+$user = new User();
 
 class UserDao
 {
@@ -14,7 +16,18 @@ class UserDao
     {
         $this->conn = $conn;
     }
+    public function buildUser($data){
+        $user = new User();
 
+        $user->id = $data["id"];
+        $user->name = $data["name"];
+        $user->email = $data["email"];
+        $user->token = $data["token"];
+        $user->password = $data["password"];
+        $user->created_at = $data["created_at"];
+
+        return $user;
+    }
     public function userRegistration(User $user)
     {
 
@@ -31,28 +44,32 @@ class UserDao
         $stmt->execute();
     }
     public function findByEmail($email){
-        $stmt = $this->conn->prepare("SELECT email FROM users WHERE email = :email");
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
 
         $stmt->bindParam(":email", $email);
 
         $stmt->execute();
 
-        $result = $stmt->fetch();
+        if($stmt->rowCount() > 0){
+            $result = $stmt->fetch();
+            $user = $this->buildUser($result);
+            
+            return $user;
+        } else {
+            return false;
+        }
 
-        return $result;
     }
     public function checkData($email, $password){
+        
 
-        $stmt = $this->conn->prepare("SELECT token FROM users WHERE email = :email AND password = :password");
+        $user = $this->findByEmail($email);
 
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $password);
-
-        $stmt->execute();
-
-        $result = $stmt->fetch();
-
-        print_r($result);
-
+        if($user){
+            
+            if(password_verify($password, $user->password)){
+            }
+        }
+        
     }
 }

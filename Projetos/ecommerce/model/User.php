@@ -3,12 +3,10 @@
 class User{
     public $id;
     public $name;
-
     public $email;
-
     public $password;
-
     public $token;
+    public $created_at;
 
     public function createPass($password){
         return password_hash($password, PASSWORD_DEFAULT);
