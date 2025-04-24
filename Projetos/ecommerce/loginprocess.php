@@ -6,7 +6,7 @@ require_once "dao/UserDao.php";
 require_once "globals.php";
 
 $user = new User();
-$userDao = new UserDao($conn);
+$userDao = new UserDao($conn, $BASE_URL);
 $message = new Message($BASE_URL);
 
 
@@ -45,18 +45,21 @@ if(isset($_POST)){
             $message->setMessage("Por favor preencha todos os campos.", "error", "login.php");
         }
     } else if ($_POST["type"] === "login"){
+
+        
         if(!empty($_POST["email"]) && !empty($_POST["password"])){
             $email = filter_input(INPUT_POST, "email");
             $password = filter_input(INPUT_POST, "password");
 
-            
-
             if($userDao->checkData($email, $password)){
-
+                $user = $userDao->findByEmail($email);
+                $message->setMessage("Seja bem vindo $user->name", "success", "index.php");
             }
-
-
+            else {
+                $message->setMessage("Dados de login inválidos, verifique o e-mail e senha.", "error", "login.php");
+            }
         }
+
     } else{
         $message->setMessage("Dados inválidos.", "error", "login.php");
     }

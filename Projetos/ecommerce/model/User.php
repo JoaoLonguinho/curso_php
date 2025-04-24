@@ -30,4 +30,5 @@ class User{
         $this->password = $password;
         return $password;
     }
+    
 }

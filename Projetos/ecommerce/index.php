@@ -1,6 +1,13 @@
 <?php
 
 require_once "templates/header.php";
+require_once "model/User.php";
+require_once "dao/UserDao.php";
+
+$user = new User();
+$userDao = new UserDao($conn, $BASE_URL);
+
+$user = $userDao->getSessionToken();
 
 ?>
 
@@ -10,11 +17,12 @@ require_once "templates/header.php";
             <img src="images/placeholder-profile.png" alt="">
         </div>
         <div class="profile-name">
-            <p>Nome</p>
+            <p><?= $user->name ?></p>
         </div>
         <div class="icons">
             <i class="fa-solid fa-user"></i>
             <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fa-solid fa-door-open"></i>
         </div>
     </section>
     <section class="product-section">
