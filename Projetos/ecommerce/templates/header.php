@@ -3,14 +3,20 @@
 require_once "db.php";
 require_once "globals.php";
 require_once "model/Message.php";
+require_once "dao/UserDao.php";
+require_once "model/User.php";
 
 $message = new Message($BASE_URL);
+$user = new User();
+$userDao = new UserDao($conn, $BASE_URL);
 
 $flashMessage = $message->getMessage();
 
-if(!empty($flashMessage["msg"])){
+if (!empty($flashMessage["msg"])) {
     $message->clearMessage();
 }
+
+$user = $userDao->getSessionToken();
 
 
 ?>
@@ -40,10 +46,13 @@ if(!empty($flashMessage["msg"])){
                     <li>Home</li>
                 </a>
                 <li>Sobre nós</li>
-                <a href="login.php">
-                    <li>Login</li>
+                <a href="profile.php">
+                    <li>Perfil</li>
                 </a>
-                <li>Entre em contato</li>
+                < href="login.php">
+                    <li>Login</li>
+                    </a>
+                    <li>Entre em contato</li>
             </ul>
         </nav>
     </header>

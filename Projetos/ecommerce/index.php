@@ -9,6 +9,10 @@ $userDao = new UserDao($conn, $BASE_URL);
 
 $user = $userDao->getSessionToken();
 
+// if($user === false){
+//     $userDao->destroyToken();
+// }
+
 ?>
 
 <section class="start-section">
@@ -20,9 +24,25 @@ $user = $userDao->getSessionToken();
             <p><?= $user->name ?></p>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-user"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-            <i class="fa-solid fa-door-open"></i>
+            <form action="logout.php" method="POST">
+                <input type="hidden" name="type" value="profile">
+                <button type="submit" class="icon-btns">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+            </form>
+
+            <form action="logout.php" method="POST">
+                <input type="hidden" name="type" value="cart">
+                <button type="submit" class="icon-btns">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </form>
+            <form action="logoutprocess.php" method="POST">
+                <input type="hidden" name="type" value="logout">
+                <button type="submit" class="icon-btns">
+                    <i class="fa-solid fa-door-open"></i>
+                </button>
+            </form>
         </div>
     </section>
     <section class="product-section">

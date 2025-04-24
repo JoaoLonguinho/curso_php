@@ -1,6 +1,13 @@
 <?php
 
 require_once "templates/header.php";
+require_once "dao/UserDao.php";
+require_once "model/User.php";
+
+$user = new User();
+$userDao = new UserDao($conn, $BASE_URL);
+
+$user = $userDao->getSessionToken();
 
 ?>
 

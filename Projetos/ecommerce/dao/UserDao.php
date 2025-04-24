@@ -140,6 +140,9 @@ class UserDao
         else if($protected){
             $this->message->setMessage("É necessário estar logado para acessar esta página.", "error", "index.php");
         }
+        else{
+            return false;
+        }
     }
     public function findByToken($token){
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
@@ -153,6 +156,11 @@ class UserDao
             $user = $this->buildUser($result);
         }
         return $user;
+    }
+    public function destroyToken(){
+        if (!empty($_SESSION["token"])){
+            $_SESSION["token"] = "";
+        }
     }
     
 }

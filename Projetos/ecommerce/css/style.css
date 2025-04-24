@@ -67,6 +67,10 @@ a{
     justify-content: center;
     gap: 20px;
 }
+.icon-btns{
+    background-color: transparent;
+    border: none;
+}
 .fa-cart-shopping, .fa-user, .fa-door-open{
     color: white;
     cursor: pointer;
