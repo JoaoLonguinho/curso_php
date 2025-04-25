@@ -28,7 +28,7 @@ if(isset($_POST)){
 
                 $emailValidation = $userDao->findByEmail($email);
                 
-                if($email != $emailValidation["email"]){
+                if($email != $user->email){
                     $userDao->userRegistration($user);
                     $message->setMessage("Cadastro efetuado com sucesso! Bem-vindo $user->name", "success", "login.php");
                 }
