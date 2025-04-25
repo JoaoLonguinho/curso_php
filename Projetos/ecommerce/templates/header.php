@@ -46,13 +46,17 @@ $user = $userDao->getSessionToken();
                     <li>Home</li>
                 </a>
                 <li>Sobre nós</li>
-                <a href="profile.php">
-                    <li>Perfil</li>
-                </a>
-                < href="login.php">
-                    <li>Login</li>
+                <?php if(empty($user->token)): ?>
+                    <a href="login.php">
+                        <li>Login</li>
                     </a>
-                    <li>Entre em contato</li>
+                <?php else: ?>
+                    <a href="profile.php">
+                        <li>Perfil</li>
+                    </a>
+                <?php endif; ?>
+                <li>Entre em contato</li>
+                </a>
             </ul>
         </nav>
     </header>
