@@ -85,14 +85,41 @@ a{
     background-color: transparent;
     border: none;
 }
-.fa-cart-shopping, .fa-user, .fa-door-open{
+.fa-cart-shopping, .fa-user, .fa-door-open, .fa-plus-minus{
     color: white;
     cursor: pointer;
+}
+.main-page-title{
+    margin-top: 10px;
 }
 .product-section{
     width: 90%;
     height: 100vh;
     padding: 0px 20px;
+}
+.product-section form{
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 20px;
+}
+.product-section input, .product-section textarea{
+    border: none;
+    border-bottom: 2px solid grey;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 20px;
+}
+.product-section form button{
+    border: none;
+    color: #D88373;
+    background-color: #17255A;
+    cursor: pointer;
+    padding: 10px 0px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
 }
 .product-card{
     width: 33%;

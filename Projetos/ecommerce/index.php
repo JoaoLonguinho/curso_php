@@ -9,10 +9,6 @@ $userDao = new UserDao($conn, $BASE_URL);
 
 $user = $userDao->getSessionToken();
 
-// if($user === false){
-//     $userDao->destroyToken();
-// }
-
 ?>
 
 <section class="start-section">
@@ -38,7 +34,7 @@ $user = $userDao->getSessionToken();
                     <i class="fa-solid fa-user"></i>
                 </button>
             </form>
-
+            <a href="addproduct.php"><i class="fa-solid fa-plus-minus"></i></a>
             <form action="logout.php" method="POST">
                 <input type="hidden" name="type" value="cart">
                 <button type="submit" class="icon-btns">
@@ -55,20 +51,21 @@ $user = $userDao->getSessionToken();
         <?php endif; ?>
     </section>
     <section class="product-section">
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="images/placeholder-product.png" alt="">
-            </div>
-            <div class="product-name">
-                Nome do produto
-            </div>
-            <div class="product-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quibusdam!
-            </div>
-            <div class="product-btns">
-                <i class="fa-solid fa-cart-plus"></i>
-                <i class="fa-solid fa-trash"></i>
-            </div>
+        <h1 class="main-page-title">Produtos:</h1>
+    <div class="product-card">
+        <div class="product-img-container">
+            <img src="images/placeholder-product.png" alt="">
         </div>
-    </section>
+        <div class="product-name">
+            Nome do produto
+        </div>
+        <div class="product-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quibusdam!
+        </div>
+        <div class="product-btns">
+            <i class="fa-solid fa-cart-plus"></i>
+            <i class="fa-solid fa-trash"></i>
+        </div>
+    </div>
+</section>
 </section>
