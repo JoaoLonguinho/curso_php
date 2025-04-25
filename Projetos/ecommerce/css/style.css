@@ -58,6 +58,20 @@ a{
     width: 100%;
     border-radius: 50%;
 }
+.profile-logged-out{
+    color: #F5E2C8;
+    text-align: center;
+}
+.profile-logged-out p {
+    margin-bottom: 20px;
+}
+.profile-logged-out a{
+    color: #18206F;
+    margin-top: 10px;
+    border: 1px solid #F5E2C8;
+    background-color: #D88373;
+    padding: 5px 15px;
+}
 .profile-name{
     color: #F5E2C8;
 }
@@ -77,7 +91,6 @@ a{
 }
 .product-section{
     width: 90%;
-    box-shadow: 0px 0px 10px 0px black;
     height: 100vh;
     padding: 0px 20px;
 }
@@ -151,7 +164,7 @@ a{
     border-radius: 10px;
 }
 .msg-container{
-    margin: 20px auto 0px;
+    margin: 20px auto 20px;
     text-align: center;
     width: 50%;
 }

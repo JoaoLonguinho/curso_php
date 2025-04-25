@@ -17,7 +17,15 @@ $user = $userDao->getSessionToken();
 
 <section class="start-section">
     <section class="profile-section">
-        <div class="profile-img">
+        <?php if(empty($user->token)): ?>
+        
+        <div class="profile-logged-out">
+            <p>Fala login para efetuar suas compras</p>
+            <a href="login.php">Login</a>
+        </div>
+        
+        <?php else: ?>
+            <div class="profile-img">
             <img src="images/placeholder-profile.png" alt="">
         </div>
         <div class="profile-name">
@@ -44,6 +52,7 @@ $user = $userDao->getSessionToken();
                 </button>
             </form>
         </div>
+        <?php endif; ?>
     </section>
     <section class="product-section">
         <div class="product-card">
