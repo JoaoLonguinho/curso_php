@@ -112,7 +112,7 @@ class UserDao implements userDAOInterface
     {
         $user = $this->findByEmail($email);
         if($user){
-            print_r($user); exit;
+
             // checar se as senham estao corretas 
             if(password_verify($password, $user->password)){
 

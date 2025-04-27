@@ -26,13 +26,14 @@ if(isset($_POST)){
                 $user->setUserPassword($password);
                 $user->setUserToken($token);
 
-                $emailValidation = $userDao->findByEmail($email);
+                $userToEmailValidation = $userDao->findByEmail($email);
                 
-                if($email != $user->email){
+                if($email != $userToEmailValidation->email){
                     $userDao->userRegistration($user);
-                    $message->setMessage("Cadastro efetuado com sucesso! Bem-vindo $user->name", "success", "login.php");
+                    $message->setMessage("Cadastro efetuado com sucesso! Bem-vindo(a) $user->name", "success", "login.php");
                 }
                 else{
+
                     $message->setMessage("E-mail já cadastrado.", "error", "login.php");
                 }
 
