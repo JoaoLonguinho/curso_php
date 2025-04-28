@@ -160,6 +160,7 @@ class UserDao
     public function destroyToken(){
         if (!empty($_SESSION["token"])){
             $_SESSION["token"] = "";
+            $_SESSION["cartItens"] = "";
         }
     }
     

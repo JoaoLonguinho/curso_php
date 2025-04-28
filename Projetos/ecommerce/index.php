@@ -33,21 +33,31 @@ $productList = $productDao->getAllProducts();
             <div class="profile-name">
                 <p><?= $user->name ?></p>
             </div>
+            <!-- profile icons -->
             <div class="icons">
-                <form action="logout.php" method="POST">
+                <form action="logout.php" class="forms-profile" method="POST">
                     <input type="hidden" name="type" value="profile">
                     <button type="submit" class="icon-btns">
                         <i class="fa-solid fa-user"></i>
                     </button>
                 </form>
                 <a href="addproduct.php"><i class="fa-solid fa-plus-minus"></i></a>
-                <form action="logout.php" method="POST">
+                <form action="cart.php" class="forms-profile" method="POST">
                     <input type="hidden" name="type" value="cart">
                     <button type="submit" class="icon-btns">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="profile-cart">
+                            <i class="fa-solid fa-cart-shopping"></i> 
+                            <span>
+                                <?php if(!empty($_SESSION["cartItens"])): ?>
+                                <?= count($_SESSION["cartItens"]);?>
+                                <?php else: ?>
+                                0
+                                <?php endif; ?>
+                            </span>
+                        </div>
                     </button>
                 </form>
-                <form action="logoutprocess.php" method="POST">
+                <form action="logoutprocess.php" class="forms-profile" method="POST">
                     <input type="hidden" name="type" value="logout">
                     <button type="submit" class="icon-btns">
                         <i class="fa-solid fa-door-open"></i>
@@ -74,7 +84,10 @@ $productList = $productDao->getAllProducts();
                         R$ <?= $product->productPrice ?>
                     </div>
                     <div class="product-btns">
-                        <button><i class="fa-solid fa-cart-plus"></i></button>
+                        <form action="addtocartprocess.php" method="POST">
+                            <input type="hidden" name="cartItens" value="<?= $product->id ?>">
+                            <button type="submit"><i class="fa-solid fa-cart-plus"></i></button>
+                        </form>
                         <button><i class="fa-solid fa-trash"></i></button>
                     </div>
                     <div class="buy-btn">

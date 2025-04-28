@@ -74,12 +74,27 @@ a{
 }
 .profile-name{
     color: #F5E2C8;
+    text-align: center;
 }
 .icons{
     padding: 10px;
     display: flex;
     justify-content: center;
     gap: 20px;
+    
+}
+.profile-cart{
+    color: white;
+    position: relative;
+}
+.profile-cart span{
+    position: absolute;
+    font-size: 10px;
+    background-color: white;
+    color: #17255A;
+    border-radius: 10px;
+    padding: 2px;
+    top: -10px;
 }
 .icon-btns{
     background-color: transparent;
@@ -98,16 +113,25 @@ a{
     height: 100vh;
     padding: 0px 20px;
 }
-.all-products-container{
-    display: flex;
-    gap: 20px;
+.product-name{
+    padding-top: 10px;
 }
-.product-section form{
+.product-description{
+    padding: 10px 0px;
+    width: 50%;
+    margin: auto;
+}
+.product-price{
+    font-size: 20px;
+    font-weight: 600;
+}
+.forms-profile form{
     margin-top: 45px;
     display: flex;
     flex-direction: column;
     width: 500px;
     gap: 20px;
+    font-size: 30px;
 }
 .product-section input, .product-section textarea{
     border: none;
@@ -116,24 +140,20 @@ a{
     padding: 5px;
     font-size: 20px;
 }
-.product-section form button{
-    border: none;
-    color: #D88373;
-    background-color: #17255A;
-    cursor: pointer;
-    padding: 10px 0px;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 10px;
+
+.all-products-container{
+    display: flex;
+    flex-wrap: wrap;
 }
 .product-card{
-    width: 33%;
+    margin: 10px;
+    width: 30%;
     display: flex;
     flex-direction: column;
     text-align: center;
-    box-shadow: 0px 0px 10px 0px black;
+    border: 2px solid #F5E2C8;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 .product-img-container{
     height: 300px;
@@ -143,6 +163,9 @@ a{
 }
 .product-btns{
     margin: 10px 0px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 .product-btns i{
     padding: 10px;
