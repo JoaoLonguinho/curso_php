@@ -252,3 +252,24 @@ a{
     border: 1px solid green;
     padding: 20px 20px;
 }
+
+/* Adicionar produto */
+
+.forms-add{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 20px;
+    margin-top: 35px;
+}
+.forms-add button{
+    width: 100%;
+    border: none;
+    color: #D88373;
+    background-color: #17255A;
+    cursor: pointer;
+    padding: 10px 0px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+}
