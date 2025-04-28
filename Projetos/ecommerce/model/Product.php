@@ -8,4 +8,5 @@ class Product{
 
     public $user_id;
 
+    
 }

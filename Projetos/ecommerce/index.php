@@ -3,69 +3,87 @@
 require_once "templates/header.php";
 require_once "model/User.php";
 require_once "dao/UserDao.php";
+require_once "model/Product.php";
+require_once "dao/ProductDao.php";
 
 $user = new User();
 $userDao = new UserDao($conn, $BASE_URL);
+$product = new Product();
+$productDao = new ProductDao($conn, $BASE_URL);
 
 $user = $userDao->getSessionToken();
+
+$productList = $productDao->getAllProducts();
 
 ?>
 
 <section class="start-section">
     <section class="profile-section">
-        <?php if(empty($user->token)): ?>
-        
-        <div class="profile-logged-out">
-            <p>Fala login para efetuar suas compras</p>
-            <a href="login.php">Login</a>
-        </div>
-        
+        <?php if (empty($user->token)): ?>
+
+            <div class="profile-logged-out">
+                <p>Fala login para efetuar suas compras</p>
+                <a href="login.php">Login</a>
+            </div>
+
         <?php else: ?>
             <div class="profile-img">
-            <img src="images/placeholder-profile.png" alt="">
-        </div>
-        <div class="profile-name">
-            <p><?= $user->name ?></p>
-        </div>
-        <div class="icons">
-            <form action="logout.php" method="POST">
-                <input type="hidden" name="type" value="profile">
-                <button type="submit" class="icon-btns">
-                    <i class="fa-solid fa-user"></i>
-                </button>
-            </form>
-            <a href="addproduct.php"><i class="fa-solid fa-plus-minus"></i></a>
-            <form action="logout.php" method="POST">
-                <input type="hidden" name="type" value="cart">
-                <button type="submit" class="icon-btns">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-            </form>
-            <form action="logoutprocess.php" method="POST">
-                <input type="hidden" name="type" value="logout">
-                <button type="submit" class="icon-btns">
-                    <i class="fa-solid fa-door-open"></i>
-                </button>
-            </form>
-        </div>
+                <img src="images/placeholder-profile.png" alt="">
+            </div>
+            <div class="profile-name">
+                <p><?= $user->name ?></p>
+            </div>
+            <div class="icons">
+                <form action="logout.php" method="POST">
+                    <input type="hidden" name="type" value="profile">
+                    <button type="submit" class="icon-btns">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                </form>
+                <a href="addproduct.php"><i class="fa-solid fa-plus-minus"></i></a>
+                <form action="logout.php" method="POST">
+                    <input type="hidden" name="type" value="cart">
+                    <button type="submit" class="icon-btns">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </form>
+                <form action="logoutprocess.php" method="POST">
+                    <input type="hidden" name="type" value="logout">
+                    <button type="submit" class="icon-btns">
+                        <i class="fa-solid fa-door-open"></i>
+                    </button>
+                </form>
+            </div>
         <?php endif; ?>
     </section>
     <section class="product-section">
         <h1 class="main-page-title">Produtos:</h1>
-    <div class="product-card">
-        <div class="product-img-container">
-            <img src="images/placeholder-product.png" alt="">
+        <div class="all-products-container">
+            <?php foreach ($productList as $product): ?>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/product-placeholder.png" alt="">
+                    </div>
+                    <div class="product-name">
+                        <?= $product->productName ?>
+                    </div>
+                    <div class="product-description">
+                        <?= $product->productDesc ?>
+                    </div>
+                    <div class="product-price">
+                        R$ <?= $product->productPrice ?>
+                    </div>
+                    <div class="product-btns">
+                        <button><i class="fa-solid fa-cart-plus"></i></button>
+                        <button><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <div class="buy-btn">
+                        <button>
+                            Compre agora
+                        </button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-        <div class="product-name">
-            Nome do produto
-        </div>
-        <div class="product-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quibusdam!
-        </div>
-        <div class="product-btns">
-            <i class="fa-solid fa-cart-plus"></i>
-            <i class="fa-solid fa-trash"></i>
-        </div>
-    </div>
-</section>
+    </section>
 </section>

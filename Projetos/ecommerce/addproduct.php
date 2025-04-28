@@ -9,6 +9,7 @@ $user = new User();
 $userDao = new UserDao($conn, $BASE_URL);
 
 $user = $userDao->getSessionToken();
+$userDao->getSessionToken(true); // Faz a página funcionar somente com o login.
 
 ?>
 
