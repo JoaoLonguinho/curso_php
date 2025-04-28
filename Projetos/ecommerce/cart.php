@@ -15,6 +15,14 @@ $user = $userDao->getSessionToken();
 
 $productList = $product->productsInCart();
 
+$productListFiltred = array_values(array_unique($productList));
+
+foreach($productListFiltred as $productId){
+    $id = $productId;
+    $productsById = $productDao->getProductsById($id);
+}
+
+
 ?>
 
 <section class="start-section">
@@ -46,12 +54,12 @@ $productList = $product->productsInCart();
                     <input type="hidden" name="type" value="cart">
                     <button type="submit" class="icon-btns">
                         <div class="profile-cart">
-                            <i class="fa-solid fa-cart-shopping"></i> 
+                            <i class="fa-solid fa-cart-shopping"></i>
                             <span>
-                                <?php if(!empty($_SESSION["cartItens"])): ?>
-                                <?= count($_SESSION["cartItens"]);?>
+                                <?php if (!empty($_SESSION["cartItens"])): ?>
+                                    <?= count($_SESSION["cartItens"]); ?>
                                 <?php else: ?>
-                                0
+                                    0
                                 <?php endif; ?>
                             </span>
                         </div>
@@ -69,32 +77,19 @@ $productList = $product->productsInCart();
     <section class="product-section">
         <h1 class="main-page-title">Seu carrinho:</h1>
         <div class="all-products-container">
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="images/product-placeholder.png" alt="">
-                    </div>
-                    <div class="product-name">
-                        <?= $product->productName ?>
-                    </div>
-                    <div class="product-description">
-                        <?= $product->productDesc ?>
-                    </div>
-                    <div class="product-price">
-                        R$ <?= $product->productPrice ?>
-                    </div>
-                    <div class="product-btns">
-                        <form action="addtocartprocess.php" method="POST">
-                            <input type="hidden" name="cartItens" value="<?= $product->id ?>">
-                            <button type="submit"><i class="fa-solid fa-cart-plus"></i></button>
-                        </form>
-                        <button><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="buy-btn">
-                        <button>
-                            Compre agora
-                        </button>
-                    </div>
+            <div class="product-in-cart">
+                <div class="product-in-cart-img-container">
+                    <img src="/images/product-placeholder.png" alt="">
                 </div>
+                <div class="product-name-in-cart">Product name:</div>
+                <div class="product-price-sum">valor:</div>
+                <div class="product-type-quantity">product quantity:</div>
+            </div>
+            <div class="finish">
+                <form action="finaliza-purchase" method="POST">
+                    <button type="submit">Finalizar compra</button>
+                </form>
+            </div>
         </div>
     </section>
 </section>

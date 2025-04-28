@@ -65,4 +65,27 @@ class ProductDao{
         }
         return $allProducts;
     }
+    public function getProductsById($id){
+        $productList = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+
+        $productsInDb = $stmt->fetchAll();
+
+        foreach($productsInDb as $productInDb){
+            $product = new Product();
+
+            $product->name = $productInDb["name"];
+            $product->description = $productInDb["description"];
+            $product->price = $productInDb["price"];
+            $product->user_id = $productInDb["user_id"];
+
+            $productList[] = $product;
+        }
+        return $productList;
+    }
 }
