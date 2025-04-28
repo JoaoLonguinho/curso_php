@@ -60,7 +60,6 @@ $userDao->getSessionToken(true); // Faz a página funcionar somente com o login.
     <section class="product-section">
         <h1 class="main-page-title">Adicionar produtos:</h1>
         <form action="addproductprocess.php" method="POST" class="forms-add">
-            
             <input type="text" name="productName" id="productName" placeholder="Nome do produto">
             <textarea name="productDesc" id="productDesc" placeholder="Descrição"></textarea>
             <input type="number" name="productPrice" id="productPrice" step="0.01" min="0" placeholder="Preço (R$)">

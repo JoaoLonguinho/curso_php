@@ -8,5 +8,7 @@ class Product{
 
     public $user_id;
 
-    
+    function productsInCart(){
+        print_r($_SESSION["cartItens"]);
+    }
 }

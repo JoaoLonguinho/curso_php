@@ -13,7 +13,7 @@ $productDao = new ProductDao($conn, $BASE_URL);
 
 $user = $userDao->getSessionToken();
 
-$productList = $productDao->getAllProducts();
+$productList = $product->productsInCart();
 
 ?>
 
@@ -67,9 +67,8 @@ $productList = $productDao->getAllProducts();
         <?php endif; ?>
     </section>
     <section class="product-section">
-        <h1 class="main-page-title">Produtos:</h1>
+        <h1 class="main-page-title">Seu carrinho:</h1>
         <div class="all-products-container">
-            <?php foreach ($productList as $product): ?>
                 <div class="product-card">
                     <div class="product-img-container">
                         <img src="images/product-placeholder.png" alt="">
@@ -83,7 +82,6 @@ $productList = $productDao->getAllProducts();
                     <div class="product-price">
                         R$ <?= $product->productPrice ?>
                     </div>
-                    <?php if($user): ?>
                     <div class="product-btns">
                         <form action="addtocartprocess.php" method="POST">
                             <input type="hidden" name="cartItens" value="<?= $product->id ?>">
@@ -96,9 +94,7 @@ $productList = $productDao->getAllProducts();
                             Compre agora
                         </button>
                     </div>
-                    <?php endif; ?>
                 </div>
-            <?php endforeach; ?>
         </div>
     </section>
 </section>
