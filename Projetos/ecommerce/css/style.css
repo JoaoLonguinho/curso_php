@@ -296,3 +296,10 @@ a{
 .product-in-cart div:not(:first-child):not(:last-child) {
     border-right: 1px solid #18206F;
 }
+.back-to-buy{
+    color: #17255A;
+    text-decoration: underline;
+}
+.quantity{
+    display: flex;
+}

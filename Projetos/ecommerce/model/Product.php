@@ -9,6 +9,11 @@ class Product{
     public $user_id;
 
     public function productsInCart(){
-        return $_SESSION["cartItens"];
+        if(!empty($_SESSION["cartItens"])){
+            return $_SESSION["cartItens"];
+        }
+        else{
+            return false;
+        }
     }
 }

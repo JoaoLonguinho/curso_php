@@ -14,20 +14,24 @@ $userDao->getSessionToken(true); // Faz a página funcionar somente com o login.
 
 $user = $userDao->getSessionToken();
 
+
 $productList = $product->productsInCart(); 
-
-$productsFound = [];
-$quantities = array_count_values($productList); 
-
-foreach ($quantities as $id => $quantity) {
-    $productFound = $productDao->getProductsById($id);
-    if ($productFound) {
-        $productsFound[] = [
-            "product" => $productFound,
-            "quantity" => $quantity
-        ];
+if($productList != false){
+    $productsFound = [];
+    $quantities = array_count_values($productList); 
+    
+    foreach ($quantities as $id => $quantity) {
+        $productFound = $productDao->getProductsById($id);
+        if ($productFound) {
+            $productsFound[] = [
+                "product" => $productFound,
+                "quantity" => $quantity
+            ];
+        }
     }
 }
+
+
 
 ?>
 
@@ -83,6 +87,7 @@ foreach ($quantities as $id => $quantity) {
     <section class="product-section">
         <h1 class="main-page-title">Seu carrinho:</h1>
         <div class="all-products-container">
+            <?php if($productList != false): ?>
             <?php foreach ($productsFound as $item):
                 $productItem = $item["product"];
                 $quantity = $item["quantity"];
@@ -103,5 +108,11 @@ foreach ($quantities as $id => $quantity) {
                 <button type="submit">Finalizar compra</button>
             </form>
         </div>
+            <?php else: ?>
+                <div>
+                    <h1>Você ainda não possuí items em seu carrinho</h1>
+                    <a href="index.php" class="back-to-buy">Voltar as compras</a>
+                </div>
+            <?php endif; ?>
     </section>
 </section>
