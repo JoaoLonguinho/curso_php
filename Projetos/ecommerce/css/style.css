@@ -285,6 +285,13 @@ a{
 }
 .product-in-cart div{
     padding: 20px;
+    width: 25%;
+}
+.product-in-cart-img-container{
+    height: 50px;
+}
+.product-in-cart-img-container img{
+    height: 100%;
 }
 .product-in-cart div:not(:first-child):not(:last-child) {
     border-right: 1px solid #18206F;

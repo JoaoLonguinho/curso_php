@@ -13,13 +13,14 @@ $productDao = new ProductDao($conn, $BASE_URL);
 
 $user = $userDao->getSessionToken();
 
-$productList = $product->productsInCart();
+$productList = $product->productsInCart(); 
+$productsFound = []; 
 
-$productListFiltred = array_values(array_unique($productList));
-
-foreach($productListFiltred as $productId){
-    $id = $productId;
-    $productsById = $productDao->getProductsById($id);
+foreach($productList as $id){
+    $productFound = $productDao->getProductsById($id);
+    if ($productFound) {
+        $productsFound[] = $productFound;
+    }
 }
 
 
@@ -77,19 +78,22 @@ foreach($productListFiltred as $productId){
     <section class="product-section">
         <h1 class="main-page-title">Seu carrinho:</h1>
         <div class="all-products-container">
+            <?php foreach($productsFound as $productItem): ?>
             <div class="product-in-cart">
                 <div class="product-in-cart-img-container">
                     <img src="/images/product-placeholder.png" alt="">
                 </div>
-                <div class="product-name-in-cart">Product name:</div>
-                <div class="product-price-sum">valor:</div>
+                <div class="product-name-in-cart"><?= $productItem->productName ?></div>
+                <div class="product-price-sum"> R$ <?= $productItem->productPrice ?></div>
                 <div class="product-type-quantity">product quantity:</div>
             </div>
-            <div class="finish">
-                <form action="finaliza-purchase" method="POST">
-                    <button type="submit">Finalizar compra</button>
-                </form>
-            </div>
+            
+            <?php endforeach; ?>
+        </div>
+        <div class="finish">
+            <form action="finaliza-purchase" method="POST">
+                <button type="submit">Finalizar compra</button>
+            </form>
         </div>
     </section>
 </section>

@@ -20,7 +20,6 @@ $productList = $productDao->getAllProducts();
 <section class="start-section">
     <section class="profile-section">
         <?php if (empty($user->token)): ?>
-
             <div class="profile-logged-out">
                 <p>Fala login para efetuar suas compras</p>
                 <a href="login.php">Login</a>
@@ -42,9 +41,7 @@ $productList = $productDao->getAllProducts();
                     </button>
                 </form>
                 <a href="addproduct.php"><i class="fa-solid fa-plus-minus"></i></a>
-                <form action="cart.php" class="forms-profile" method="POST">
-                    <input type="hidden" name="type" value="cart">
-                    <button type="submit" class="icon-btns">
+                    <a href="cart.php" class="icon-btns">
                         <div class="profile-cart">
                             <i class="fa-solid fa-cart-shopping"></i> 
                             <span>
@@ -55,8 +52,8 @@ $productList = $productDao->getAllProducts();
                                 <?php endif; ?>
                             </span>
                         </div>
-                    </button>
-                </form>
+                    </a>
+
                 <form action="logoutprocess.php" class="forms-profile" method="POST">
                     <input type="hidden" name="type" value="logout">
                     <button type="submit" class="icon-btns">

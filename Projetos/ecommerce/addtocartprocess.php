@@ -15,4 +15,6 @@ $itemToAddInCart = filter_input(INPUT_POST, "cartItens");
 
 $_SESSION["cartItens"][] = $itemToAddInCart;
 
+
+
 header("Location: index.php");
