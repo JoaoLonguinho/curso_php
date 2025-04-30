@@ -14,11 +14,11 @@ $userDao->getSessionToken(true); // Faz a página funcionar somente com o login.
 
 $user = $userDao->getSessionToken();
 
-
-$productList = $product->productsInCart(); 
-if($productList != false){
+$productList = $product->productsInCart();
+if ($productList != false) {
+    
     $productsFound = [];
-    $quantities = array_count_values($productList); 
+    $quantities = array_count_values($productList);
     
     foreach ($quantities as $id => $quantity) {
         $productFound = $productDao->getProductsById($id);
@@ -30,8 +30,6 @@ if($productList != false){
         }
     }
 }
-
-
 
 ?>
 
@@ -87,32 +85,49 @@ if($productList != false){
     <section class="product-section">
         <h1 class="main-page-title">Seu carrinho:</h1>
         <div class="all-products-container">
-            <?php if($productList != false): ?>
-            <?php foreach ($productsFound as $item):
-                $productItem = $item["product"];
-                $quantity = $item["quantity"];
-                ?>
-                <div class="product-in-cart">
-                    <div class="product-in-cart-img-container">
-                        <img src="images/product-placeholder.png" alt="">
+            <?php if ($productList != false): ?>
+                <?php foreach ($productsFound as $item):
+                    $productItem = $item["product"];
+                    $quantity = $item["quantity"];
+                    ?>
+                    <div class="product-in-cart">
+                        <div class="product-in-cart-img-container">
+                            <img src="images/product-placeholder.png" alt="">
+                        </div>
+                        <div class="product-name-in-cart">Produto: <?= $productItem->productName ?></div>
+                        <div class="product-price-sum">R$
+                            <?= number_format($productItem->productPrice * $quantity, 2, ',', '.') ?></div>
+                        <div class="product-type-quantity">
+                            <div>
+                                <form action="addtocartprocess.php" method="POST">
+                                    <input type="hidden" name="type" value="increaseCart">
+                                    <input type="hidden" name="productId" value="<?= $productItem->id ?>">
+                                    <button type="submit"> <i class="fa-solid fa-arrow-up"></i> </button>
+                                </form>
+                            </div>
+                            Quantidade: <?= $quantity ?>
+                            <div>
+                                <form action="addtocartprocess.php" method="POST">
+                                    <input type="hidden" name="type" value="decreaseCart">
+                                    <input type="hidden" name="productId" value="<?= $productItem->id ?>">
+                                    <button type="submit"> <i class="fa-solid fa-arrow-down"></i> </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-name-in-cart">Produto: <?= $productItem->productName ?></div>
-                    <div class="product-price-sum">R$ <?= number_format($productItem->productPrice * $quantity, 2, ',', '.') ?></div>
-                    <div class="product-type-quantity">Quantidade: <?= $quantity ?></div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
 
-        </div>
-        <div class="finish">
-            <form action="finaliza-purchase" method="POST">
-                <button type="submit">Finalizar compra</button>
-            </form>
-        </div>
-            <?php else: ?>
-                <div>
-                    <h1>Você ainda não possuí items em seu carrinho</h1>
-                    <a href="index.php" class="back-to-buy">Voltar as compras</a>
-                </div>
-            <?php endif; ?>
+            </div>
+            <div class="finish">
+                <form action="finaliza-purchase" method="POST">
+                    <button type="submit">Finalizar compra</button>
+                </form>
+            </div>
+        <?php else: ?>
+            <div>
+                <h1>Você ainda não possuí items em seu carrinho</h1>
+                <a href="index.php" class="back-to-buy">Voltar as compras</a>
+            </div>
+        <?php endif; ?>
     </section>
 </section>

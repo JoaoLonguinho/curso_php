@@ -83,6 +83,7 @@ $productList = $productDao->getAllProducts();
                     <?php if($user): ?>
                     <div class="product-btns">
                         <form action="addtocartprocess.php" method="POST">
+                            <input type="hidden" name="type" value="addToCart">
                             <input type="hidden" name="cartItens" value="<?= $product->id ?>">
                             <button type="submit"><i class="fa-solid fa-cart-plus"></i></button>
                         </form>
