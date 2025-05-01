@@ -15,6 +15,7 @@ $userDao->getSessionToken(true); // Faz a página funcionar somente com o login.
 $user = $userDao->getSessionToken();
 
 $productList = $product->productsInCart();
+$total = 0;
 if ($productList != false) {
     
     $productsFound = [];
@@ -28,6 +29,12 @@ if ($productList != false) {
                 "quantity" => $quantity
             ];
         }
+    }
+    foreach ($productsFound as $item){
+        $productItem = $item["product"];
+        $quantity = $item["quantity"];
+        $subtotal = $productItem->productPrice * $quantity;
+        $total += $subtotal;
     }
 }
 
@@ -84,7 +91,7 @@ if ($productList != false) {
     </section>
     <section class="product-section">
         <h1 class="main-page-title">Seu carrinho:</h1>
-        <div class="all-products-container">
+        <div class="cart-products-container">
             <?php if ($productList != false): ?>
                 <?php foreach ($productsFound as $item):
                     $productItem = $item["product"];
@@ -105,7 +112,7 @@ if ($productList != false) {
                                     <button type="submit"> <i class="fa-solid fa-arrow-up"></i> </button>
                                 </form>
                             </div>
-                            Quantidade: <?= $quantity ?>
+                            <h2>Quantidade: <?= $quantity ?></h2>
                             <div>
                                 <form action="addtocartprocess.php" method="POST">
                                     <input type="hidden" name="type" value="decreaseCart">
@@ -116,12 +123,14 @@ if ($productList != false) {
                         </div>
                     </div>
                 <?php endforeach; ?>
-
-            </div>
-            <div class="finish">
-                <form action="finaliza-purchase" method="POST">
-                    <button type="submit">Finalizar compra</button>
-                </form>
+                <div class="total">
+                    <h2>Total: R$ <?= $total ?></h2>
+                </div>
+                <div class="finish">
+                    <form action="finaliza-purchase" method="POST">
+                        <button type="submit">Finalizar compra</button>
+                    </form>
+                </div>
             </div>
         <?php else: ?>
             <div>
