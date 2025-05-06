@@ -127,7 +127,7 @@ if ($productList != false) {
                     <h2>Total: R$ <?= $total ?></h2>
                 </div>
                 <div class="finish">
-                    <form action="finaliza-purchase" method="POST">
+                    <form action="finalize-purchase.php" method="POST">
                         <button type="submit">Finalizar compra</button>
                     </form>
                 </div>
