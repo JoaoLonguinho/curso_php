@@ -84,5 +84,31 @@ class ProductDao{
         }
         return null;
     }
+    public function getProductsByUserId($user_id){
+        $allProducts = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM products WHERE user_id = :user_id");
+
+        $stmt->bindParam(":user_id", $user_id);
+
+        $stmt->execute();
+
+        $productListInDB = $stmt->fetchAll();
+
+
+        foreach($productListInDB as $productInDB){
+            $product = new Product();
+
+            $product->id = $productInDB["id"];
+            $product->name = $productInDB["name"];
+            $product->description = $productInDB["description"];
+            $product->price = $productInDB["price"];
+            $product->user_id = $productInDB["user_id"];
+
+            $allProducts[] = $this->buildProduct($product);
+
+        }
+        return $allProducts;
+    }
     
 }

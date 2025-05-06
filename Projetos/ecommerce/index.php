@@ -34,12 +34,7 @@ $productList = $productDao->getAllProducts();
             </div>
             <!-- profile icons -->
             <div class="icons">
-                <form action="logout.php" class="forms-profile" method="POST">
-                    <input type="hidden" name="type" value="profile">
-                    <button type="submit" class="icon-btns">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-                </form>
+                <a href="profile.php"><i class="fa-solid fa-user"></i></a>
                 <a href="addproduct.php"><i class="fa-solid fa-plus-minus"></i></a>
                     <a href="cart.php" class="icon-btns">
                         <div class="profile-cart">
@@ -87,7 +82,7 @@ $productList = $productDao->getAllProducts();
                             <input type="hidden" name="cartItens" value="<?= $product->id ?>">
                             <button type="submit"><i class="fa-solid fa-cart-plus"></i></button>
                         </form>
-                        <button><i class="fa-solid fa-trash"></i></button>
+                        
                     </div>
                     <div class="buy-btn">
                         <button>

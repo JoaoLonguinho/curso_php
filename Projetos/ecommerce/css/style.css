@@ -343,3 +343,46 @@ a{
     border-radius: 5px;
     padding: 10px;
 }
+/* Página de perfil */
+.main-profile-container{
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+}
+.profile-card{
+    min-width: 300px;
+    width: 40%;
+    max-width: 500px;
+    margin: auto;
+    background-color: #18206F;
+    color: white;
+    box-sizing: border-box;
+    text-align: center;
+    min-height: 700px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+.profile-img-container{
+    min-height: 400px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+.profile-products{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+}
+.btn-link{
+    padding: 5px 20px;
+    background-color: #D88373;
+    color:#17255A;
+    border-radius: 10px;
+    font-weight: 600;
+    width: 30%;
+    align-self: center;
+}
