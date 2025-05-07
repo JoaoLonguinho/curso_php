@@ -30,10 +30,11 @@ $listOfProducts = $productDao->getProductsByUserId($user->id);
                 <p>Você ainda não adicionou nenhum produto.</p>
                 <a href="addproduct.php">Clique aqui para incluir.</a>
             <?php else: ?>
-                <ul>Produtos adicionados: </ul>
+                <ul>Produtos adicionados: 
                 <?php foreach ($listOfProducts as $item): ?>
                     <li><?= $item->productName ?></li>
                 <?php endforeach; ?>
+                </ul>
             <?php endif; ?>
         </div>
         <a class="btn-link" href="editprofile.php">Editar perfil</a>
