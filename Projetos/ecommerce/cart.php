@@ -15,6 +15,7 @@ $userDao->getSessionToken(true); // Faz a página funcionar somente com o login.
 $user = $userDao->getSessionToken();
 
 $productList = $product->productsInCart();
+
 $total = 0;
 if ($productList != false) {
     
